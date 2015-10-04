@@ -92,7 +92,11 @@
                             <outlet property="delegate" destination="fbs-wc-f4T" id="SAU-4Q-b5u"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Controls" id="jaq-D7-xgL"/>
+                    <navigationItem key="navigationItem" title="Controls" id="jaq-D7-xgL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="A5X-OJ-fdn">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ct-QO-oK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,7 +217,11 @@
                             <outlet property="delegate" destination="cVg-iC-m2M" id="AvV-7p-Hsx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sensors" id="8bN-Co-92B"/>
+                    <navigationItem key="navigationItem" title="Sensors" id="8bN-Co-92B">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="bzf-Pe-beC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPv-ep-Yjt" userLabel="First Responder" sceneMemberID="firstResponder"/>

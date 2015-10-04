@@ -9,9 +9,11 @@
 import UIKit
 
 class SensorTableViewController: UITableViewController {
-
+    var sensors = [0,0,0]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
         tabBarController!.tabBar.tintColor = UIColor(netHex: 0xf43254)
         UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
@@ -38,7 +40,7 @@ class SensorTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return sensors.count
     }
 
     
@@ -51,25 +53,26 @@ class SensorTableViewController: UITableViewController {
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            sensors.removeFirst()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
