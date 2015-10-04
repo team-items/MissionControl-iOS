@@ -9,11 +9,16 @@
 import UIKit
 
 class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate{
-    var arrayOfValues = [0,382,1,1024,503,284]
+    var arrayOfValues = [0]
+    var ispaused = false
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        for (var i = 1; i < 50; i++){
+            arrayOfValues.append(Int(arc4random_uniform(1025)))
+        }
+        
         graph.dataSource = self
         graph.delegate = self
         graph.enableReferenceAxisFrame = true
@@ -22,7 +27,30 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
         graph.enablePopUpReport = true
         graph.colorPoint = UIColor(netHex: 0xf43254)
         graph.colorBackgroundPopUplabel = UIColor(netHex: 0xf43254)
+        graph.animationGraphEntranceTime = 0
         
+      //  graph.autoScaleYAxis = false
+        
+      
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
+        
+        
+    }
+    func maxValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 1024
+    }
+    func minValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 0
+    }
+    @IBAction func pause(sender: UIButton) {
+        ispaused = !ispaused
+    }
+    func update(){
+        if (!ispaused){
+        arrayOfValues.append(Int(arc4random_uniform(1025)))
+        arrayOfValues.removeFirst()
+        graph.reloadGraph()
+        }
         
     }
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
