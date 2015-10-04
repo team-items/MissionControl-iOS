@@ -93,6 +93,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Controls" id="jaq-D7-xgL"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ct-QO-oK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -213,6 +214,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sensors" id="8bN-Co-92B"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPv-ep-Yjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,6 +226,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aLZ-Gm-pah" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Controls" image="gear" selectedImage="gear" id="iio-WU-22w"/>
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UfA-LB-iMi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

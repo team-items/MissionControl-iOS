@@ -14,13 +14,16 @@ class SensorTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
         tabBarController!.tabBar.tintColor = UIColor(netHex: 0xf43254)
+        UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
+        navigationController!.loadViewIfNeeded()
+        navigationController!.navigationBar.barStyle = UIBarStyle.Black
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
