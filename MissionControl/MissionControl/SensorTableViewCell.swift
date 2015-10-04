@@ -12,6 +12,8 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
     var arrayOfValues = [0]
     var ispaused = false
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
+    
+    @IBOutlet weak var pauseButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -44,9 +46,15 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
     }
     @IBAction func pause(sender: UIButton) {
         ispaused = !ispaused
+        if ispaused{
+            pauseButton.setTitle("Resume", forState: UIControlState.Normal)
+        }else{
+pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
     }
+    
     func update(){
         if (!ispaused){
+        
         arrayOfValues.append(Int(arc4random_uniform(1025)))
         arrayOfValues.removeFirst()
         graph.reloadGraph()
