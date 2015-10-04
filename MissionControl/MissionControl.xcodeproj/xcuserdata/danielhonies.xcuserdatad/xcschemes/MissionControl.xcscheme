@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C185EAC81BB0321400989A80"
+               BlueprintIdentifier = "C1CB0F601BC08087000FA9A1"
                BuildableName = "MissionControl.app"
                BlueprintName = "MissionControl"
                ReferencedContainer = "container:MissionControl.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C185EADF1BB0321400989A80"
+               BlueprintIdentifier = "C1CB0F761BC08087000FA9A1"
                BuildableName = "MissionControlTests.xctest"
                BlueprintName = "MissionControlTests"
                ReferencedContainer = "container:MissionControl.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C185EAEA1BB0321400989A80"
+               BlueprintIdentifier = "C1CB0F811BC08087000FA9A1"
                BuildableName = "MissionControlUITests.xctest"
                BlueprintName = "MissionControlUITests"
                ReferencedContainer = "container:MissionControl.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C185EAC81BB0321400989A80"
+            BlueprintIdentifier = "C1CB0F601BC08087000FA9A1"
             BuildableName = "MissionControl.app"
             BlueprintName = "MissionControl"
             ReferencedContainer = "container:MissionControl.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C185EAC81BB0321400989A80"
+            BlueprintIdentifier = "C1CB0F601BC08087000FA9A1"
             BuildableName = "MissionControl.app"
             BlueprintName = "MissionControl"
             ReferencedContainer = "container:MissionControl.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C185EAC81BB0321400989A80"
+            BlueprintIdentifier = "C1CB0F601BC08087000FA9A1"
             BuildableName = "MissionControl.app"
             BlueprintName = "MissionControl"
             ReferencedContainer = "container:MissionControl.xcodeproj">

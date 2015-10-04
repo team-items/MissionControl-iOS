@@ -7,66 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C185EACD1BB0321400989A80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185EACC1BB0321400989A80 /* AppDelegate.swift */; };
-		C185EACF1BB0321400989A80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185EACE1BB0321400989A80 /* ViewController.swift */; };
-		C185EAD21BB0321400989A80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C185EAD01BB0321400989A80 /* Main.storyboard */; };
-		C185EAD51BB0321400989A80 /* MissionControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C185EAD31BB0321400989A80 /* MissionControl.xcdatamodeld */; };
-		C185EAD71BB0321400989A80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C185EAD61BB0321400989A80 /* Assets.xcassets */; };
-		C185EADA1BB0321400989A80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C185EAD81BB0321400989A80 /* LaunchScreen.storyboard */; };
-		C185EAE51BB0321400989A80 /* MissionControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185EAE41BB0321400989A80 /* MissionControlTests.swift */; };
-		C185EAF01BB0321400989A80 /* MissionControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185EAEF1BB0321400989A80 /* MissionControlUITests.swift */; };
+		B5BBACE49B4BB7F46481388E /* libPods-MissionControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */; };
+		C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */; };
+		C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */; };
+		C1CB0F651BC08087000FA9A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F641BC08087000FA9A1 /* AppDelegate.swift */; };
+		C1CB0F6C1BC08087000FA9A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1CB0F6A1BC08087000FA9A1 /* Main.storyboard */; };
+		C1CB0F6E1BC08087000FA9A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CB0F6D1BC08087000FA9A1 /* Assets.xcassets */; };
+		C1CB0F711BC08087000FA9A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1CB0F6F1BC08087000FA9A1 /* LaunchScreen.storyboard */; };
+		C1CB0F7C1BC08087000FA9A1 /* MissionControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F7B1BC08087000FA9A1 /* MissionControlTests.swift */; };
+		C1CB0F871BC08087000FA9A1 /* MissionControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F861BC08087000FA9A1 /* MissionControlUITests.swift */; };
+		C1CB0F971BC082E6000FA9A1 /* MotorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */; };
+		C1CB0F991BC0857F000FA9A1 /* MotorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C185EAE11BB0321400989A80 /* PBXContainerItemProxy */ = {
+		C1CB0F781BC08087000FA9A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C185EAC11BB0321400989A80 /* Project object */;
+			containerPortal = C1CB0F591BC08087000FA9A1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C185EAC81BB0321400989A80;
+			remoteGlobalIDString = C1CB0F601BC08087000FA9A1;
 			remoteInfo = MissionControl;
 		};
-		C185EAEC1BB0321400989A80 /* PBXContainerItemProxy */ = {
+		C1CB0F831BC08087000FA9A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C185EAC11BB0321400989A80 /* Project object */;
+			containerPortal = C1CB0F591BC08087000FA9A1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C185EAC81BB0321400989A80;
+			remoteGlobalIDString = C1CB0F601BC08087000FA9A1;
 			remoteInfo = MissionControl;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C185EAC91BB0321400989A80 /* MissionControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MissionControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C185EACC1BB0321400989A80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C185EACE1BB0321400989A80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C185EAD11BB0321400989A80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C185EAD41BB0321400989A80 /* MissionControl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MissionControl.xcdatamodel; sourceTree = "<group>"; };
-		C185EAD61BB0321400989A80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C185EAD91BB0321400989A80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C185EADB1BB0321400989A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C185EAE01BB0321400989A80 /* MissionControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MissionControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C185EAE41BB0321400989A80 /* MissionControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionControlTests.swift; sourceTree = "<group>"; };
-		C185EAE61BB0321400989A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C185EAEB1BB0321400989A80 /* MissionControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MissionControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C185EAEF1BB0321400989A80 /* MissionControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionControlUITests.swift; sourceTree = "<group>"; };
-		C185EAF11BB0321400989A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A1EA25430BA748D1D622055 /* Pods-MissionControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.release.xcconfig"; sourceTree = "<group>"; };
+		C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
+		C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		C1CB0F611BC08087000FA9A1 /* MissionControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MissionControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1CB0F641BC08087000FA9A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C1CB0F6B1BC08087000FA9A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C1CB0F6D1BC08087000FA9A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1CB0F701BC08087000FA9A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C1CB0F721BC08087000FA9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1CB0F771BC08087000FA9A1 /* MissionControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MissionControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1CB0F7B1BC08087000FA9A1 /* MissionControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionControlTests.swift; sourceTree = "<group>"; };
+		C1CB0F7D1BC08087000FA9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1CB0F821BC08087000FA9A1 /* MissionControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MissionControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1CB0F861BC08087000FA9A1 /* MissionControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionControlUITests.swift; sourceTree = "<group>"; };
+		C1CB0F881BC08087000FA9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewController.swift; sourceTree = "<group>"; };
+		C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewCell.swift; sourceTree = "<group>"; };
+		EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MissionControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C185EAC61BB0321400989A80 /* Frameworks */ = {
+		C1CB0F5E1BC08087000FA9A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5BBACE49B4BB7F46481388E /* libPods-MissionControl.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1CB0F741BC08087000FA9A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C185EADD1BB0321400989A80 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C185EAE81BB0321400989A80 /* Frameworks */ = {
+		C1CB0F7F1BC08087000FA9A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,68 +86,92 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C185EAC01BB0321400989A80 = {
+		795C586B1C4B163378D1442D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C185EACB1BB0321400989A80 /* MissionControl */,
-				C185EAE31BB0321400989A80 /* MissionControlTests */,
-				C185EAEE1BB0321400989A80 /* MissionControlUITests */,
-				C185EACA1BB0321400989A80 /* Products */,
+				EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1CB0F581BC08087000FA9A1 = {
+			isa = PBXGroup;
+			children = (
+				C1CB0F631BC08087000FA9A1 /* MissionControl */,
+				C1CB0F7A1BC08087000FA9A1 /* MissionControlTests */,
+				C1CB0F851BC08087000FA9A1 /* MissionControlUITests */,
+				C1CB0F621BC08087000FA9A1 /* Products */,
+				C3FB9E03F07DC8EF4B33113C /* Pods */,
+				795C586B1C4B163378D1442D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		C185EACA1BB0321400989A80 /* Products */ = {
+		C1CB0F621BC08087000FA9A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C185EAC91BB0321400989A80 /* MissionControl.app */,
-				C185EAE01BB0321400989A80 /* MissionControlTests.xctest */,
-				C185EAEB1BB0321400989A80 /* MissionControlUITests.xctest */,
+				C1CB0F611BC08087000FA9A1 /* MissionControl.app */,
+				C1CB0F771BC08087000FA9A1 /* MissionControlTests.xctest */,
+				C1CB0F821BC08087000FA9A1 /* MissionControlUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C185EACB1BB0321400989A80 /* MissionControl */ = {
+		C1CB0F631BC08087000FA9A1 /* MissionControl */ = {
 			isa = PBXGroup;
 			children = (
-				C185EACC1BB0321400989A80 /* AppDelegate.swift */,
-				C185EACE1BB0321400989A80 /* ViewController.swift */,
-				C185EAD01BB0321400989A80 /* Main.storyboard */,
-				C185EAD61BB0321400989A80 /* Assets.xcassets */,
-				C185EAD81BB0321400989A80 /* LaunchScreen.storyboard */,
-				C185EADB1BB0321400989A80 /* Info.plist */,
-				C185EAD31BB0321400989A80 /* MissionControl.xcdatamodeld */,
+				C1CB0F641BC08087000FA9A1 /* AppDelegate.swift */,
+				C1CB0F6A1BC08087000FA9A1 /* Main.storyboard */,
+				C1CB0F6D1BC08087000FA9A1 /* Assets.xcassets */,
+				C1CB0F6F1BC08087000FA9A1 /* LaunchScreen.storyboard */,
+				C1CB0F721BC08087000FA9A1 /* Info.plist */,
+				C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */,
+				C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */,
+				C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */,
+				C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */,
+				C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */,
 			);
 			path = MissionControl;
 			sourceTree = "<group>";
 		};
-		C185EAE31BB0321400989A80 /* MissionControlTests */ = {
+		C1CB0F7A1BC08087000FA9A1 /* MissionControlTests */ = {
 			isa = PBXGroup;
 			children = (
-				C185EAE41BB0321400989A80 /* MissionControlTests.swift */,
-				C185EAE61BB0321400989A80 /* Info.plist */,
+				C1CB0F7B1BC08087000FA9A1 /* MissionControlTests.swift */,
+				C1CB0F7D1BC08087000FA9A1 /* Info.plist */,
 			);
 			path = MissionControlTests;
 			sourceTree = "<group>";
 		};
-		C185EAEE1BB0321400989A80 /* MissionControlUITests */ = {
+		C1CB0F851BC08087000FA9A1 /* MissionControlUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C185EAEF1BB0321400989A80 /* MissionControlUITests.swift */,
-				C185EAF11BB0321400989A80 /* Info.plist */,
+				C1CB0F861BC08087000FA9A1 /* MissionControlUITests.swift */,
+				C1CB0F881BC08087000FA9A1 /* Info.plist */,
 			);
 			path = MissionControlUITests;
+			sourceTree = "<group>";
+		};
+		C3FB9E03F07DC8EF4B33113C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */,
+				0A1EA25430BA748D1D622055 /* Pods-MissionControl.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C185EAC81BB0321400989A80 /* MissionControl */ = {
+		C1CB0F601BC08087000FA9A1 /* MissionControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C185EAF41BB0321400989A80 /* Build configuration list for PBXNativeTarget "MissionControl" */;
+			buildConfigurationList = C1CB0F8B1BC08087000FA9A1 /* Build configuration list for PBXNativeTarget "MissionControl" */;
 			buildPhases = (
-				C185EAC51BB0321400989A80 /* Sources */,
-				C185EAC61BB0321400989A80 /* Frameworks */,
-				C185EAC71BB0321400989A80 /* Resources */,
+				EB1E9BB72CE281BEC4288587 /* Check Pods Manifest.lock */,
+				C1CB0F5D1BC08087000FA9A1 /* Sources */,
+				C1CB0F5E1BC08087000FA9A1 /* Frameworks */,
+				C1CB0F5F1BC08087000FA9A1 /* Resources */,
+				6DBEFE67F577B9BD20A8E80D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,71 +179,71 @@
 			);
 			name = MissionControl;
 			productName = MissionControl;
-			productReference = C185EAC91BB0321400989A80 /* MissionControl.app */;
+			productReference = C1CB0F611BC08087000FA9A1 /* MissionControl.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C185EADF1BB0321400989A80 /* MissionControlTests */ = {
+		C1CB0F761BC08087000FA9A1 /* MissionControlTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C185EAF71BB0321400989A80 /* Build configuration list for PBXNativeTarget "MissionControlTests" */;
+			buildConfigurationList = C1CB0F8E1BC08087000FA9A1 /* Build configuration list for PBXNativeTarget "MissionControlTests" */;
 			buildPhases = (
-				C185EADC1BB0321400989A80 /* Sources */,
-				C185EADD1BB0321400989A80 /* Frameworks */,
-				C185EADE1BB0321400989A80 /* Resources */,
+				C1CB0F731BC08087000FA9A1 /* Sources */,
+				C1CB0F741BC08087000FA9A1 /* Frameworks */,
+				C1CB0F751BC08087000FA9A1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C185EAE21BB0321400989A80 /* PBXTargetDependency */,
+				C1CB0F791BC08087000FA9A1 /* PBXTargetDependency */,
 			);
 			name = MissionControlTests;
 			productName = MissionControlTests;
-			productReference = C185EAE01BB0321400989A80 /* MissionControlTests.xctest */;
+			productReference = C1CB0F771BC08087000FA9A1 /* MissionControlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C185EAEA1BB0321400989A80 /* MissionControlUITests */ = {
+		C1CB0F811BC08087000FA9A1 /* MissionControlUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C185EAFA1BB0321400989A80 /* Build configuration list for PBXNativeTarget "MissionControlUITests" */;
+			buildConfigurationList = C1CB0F911BC08087000FA9A1 /* Build configuration list for PBXNativeTarget "MissionControlUITests" */;
 			buildPhases = (
-				C185EAE71BB0321400989A80 /* Sources */,
-				C185EAE81BB0321400989A80 /* Frameworks */,
-				C185EAE91BB0321400989A80 /* Resources */,
+				C1CB0F7E1BC08087000FA9A1 /* Sources */,
+				C1CB0F7F1BC08087000FA9A1 /* Frameworks */,
+				C1CB0F801BC08087000FA9A1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C185EAED1BB0321400989A80 /* PBXTargetDependency */,
+				C1CB0F841BC08087000FA9A1 /* PBXTargetDependency */,
 			);
 			name = MissionControlUITests;
 			productName = MissionControlUITests;
-			productReference = C185EAEB1BB0321400989A80 /* MissionControlUITests.xctest */;
+			productReference = C1CB0F821BC08087000FA9A1 /* MissionControlUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C185EAC11BB0321400989A80 /* Project object */ = {
+		C1CB0F591BC08087000FA9A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Daniel Honies";
 				TargetAttributes = {
-					C185EAC81BB0321400989A80 = {
+					C1CB0F601BC08087000FA9A1 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = GD5WUSUPNL;
 					};
-					C185EADF1BB0321400989A80 = {
+					C1CB0F761BC08087000FA9A1 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = GD5WUSUPNL;
-						TestTargetID = C185EAC81BB0321400989A80;
+						TestTargetID = C1CB0F601BC08087000FA9A1;
 					};
-					C185EAEA1BB0321400989A80 = {
+					C1CB0F811BC08087000FA9A1 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = GD5WUSUPNL;
-						TestTargetID = C185EAC81BB0321400989A80;
+						TestTargetID = C1CB0F601BC08087000FA9A1;
 					};
 				};
 			};
-			buildConfigurationList = C185EAC41BB0321400989A80 /* Build configuration list for PBXProject "MissionControl" */;
+			buildConfigurationList = C1CB0F5C1BC08087000FA9A1 /* Build configuration list for PBXProject "MissionControl" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -217,37 +251,37 @@
 				en,
 				Base,
 			);
-			mainGroup = C185EAC01BB0321400989A80;
-			productRefGroup = C185EACA1BB0321400989A80 /* Products */;
+			mainGroup = C1CB0F581BC08087000FA9A1;
+			productRefGroup = C1CB0F621BC08087000FA9A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C185EAC81BB0321400989A80 /* MissionControl */,
-				C185EADF1BB0321400989A80 /* MissionControlTests */,
-				C185EAEA1BB0321400989A80 /* MissionControlUITests */,
+				C1CB0F601BC08087000FA9A1 /* MissionControl */,
+				C1CB0F761BC08087000FA9A1 /* MissionControlTests */,
+				C1CB0F811BC08087000FA9A1 /* MissionControlUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C185EAC71BB0321400989A80 /* Resources */ = {
+		C1CB0F5F1BC08087000FA9A1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C185EADA1BB0321400989A80 /* LaunchScreen.storyboard in Resources */,
-				C185EAD71BB0321400989A80 /* Assets.xcassets in Resources */,
-				C185EAD21BB0321400989A80 /* Main.storyboard in Resources */,
+				C1CB0F711BC08087000FA9A1 /* LaunchScreen.storyboard in Resources */,
+				C1CB0F6E1BC08087000FA9A1 /* Assets.xcassets in Resources */,
+				C1CB0F6C1BC08087000FA9A1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C185EADE1BB0321400989A80 /* Resources */ = {
+		C1CB0F751BC08087000FA9A1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C185EAE91BB0321400989A80 /* Resources */ = {
+		C1CB0F801BC08087000FA9A1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,61 +290,96 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6DBEFE67F577B9BD20A8E80D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB1E9BB72CE281BEC4288587 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		C185EAC51BB0321400989A80 /* Sources */ = {
+		C1CB0F5D1BC08087000FA9A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C185EACF1BB0321400989A80 /* ViewController.swift in Sources */,
-				C185EAD51BB0321400989A80 /* MissionControl.xcdatamodeld in Sources */,
-				C185EACD1BB0321400989A80 /* AppDelegate.swift in Sources */,
+				C1CB0F971BC082E6000FA9A1 /* MotorTableViewController.swift in Sources */,
+				C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */,
+				C1CB0F991BC0857F000FA9A1 /* MotorTableViewCell.swift in Sources */,
+				C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */,
+				C1CB0F651BC08087000FA9A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C185EADC1BB0321400989A80 /* Sources */ = {
+		C1CB0F731BC08087000FA9A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C185EAE51BB0321400989A80 /* MissionControlTests.swift in Sources */,
+				C1CB0F7C1BC08087000FA9A1 /* MissionControlTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C185EAE71BB0321400989A80 /* Sources */ = {
+		C1CB0F7E1BC08087000FA9A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C185EAF01BB0321400989A80 /* MissionControlUITests.swift in Sources */,
+				C1CB0F871BC08087000FA9A1 /* MissionControlUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C185EAE21BB0321400989A80 /* PBXTargetDependency */ = {
+		C1CB0F791BC08087000FA9A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C185EAC81BB0321400989A80 /* MissionControl */;
-			targetProxy = C185EAE11BB0321400989A80 /* PBXContainerItemProxy */;
+			target = C1CB0F601BC08087000FA9A1 /* MissionControl */;
+			targetProxy = C1CB0F781BC08087000FA9A1 /* PBXContainerItemProxy */;
 		};
-		C185EAED1BB0321400989A80 /* PBXTargetDependency */ = {
+		C1CB0F841BC08087000FA9A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C185EAC81BB0321400989A80 /* MissionControl */;
-			targetProxy = C185EAEC1BB0321400989A80 /* PBXContainerItemProxy */;
+			target = C1CB0F601BC08087000FA9A1 /* MissionControl */;
+			targetProxy = C1CB0F831BC08087000FA9A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C185EAD01BB0321400989A80 /* Main.storyboard */ = {
+		C1CB0F6A1BC08087000FA9A1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C185EAD11BB0321400989A80 /* Base */,
+				C1CB0F6B1BC08087000FA9A1 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		C185EAD81BB0321400989A80 /* LaunchScreen.storyboard */ = {
+		C1CB0F6F1BC08087000FA9A1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C185EAD91BB0321400989A80 /* Base */,
+				C1CB0F701BC08087000FA9A1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -318,7 +387,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C185EAF21BB0321400989A80 /* Debug */ = {
+		C1CB0F891BC08087000FA9A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -363,7 +432,7 @@
 			};
 			name = Debug;
 		};
-		C185EAF31BB0321400989A80 /* Release */ = {
+		C1CB0F8A1BC08087000FA9A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -401,29 +470,33 @@
 			};
 			name = Release;
 		};
-		C185EAF51BB0321400989A80 /* Debug */ = {
+		C1CB0F8C1BC08087000FA9A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				INFOPLIST_FILE = MissionControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = items.MissionControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MissionControl/Bridging-Header.h";
 			};
 			name = Debug;
 		};
-		C185EAF61BB0321400989A80 /* Release */ = {
+		C1CB0F8D1BC08087000FA9A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A1EA25430BA748D1D622055 /* Pods-MissionControl.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				INFOPLIST_FILE = MissionControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = items.MissionControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MissionControl/Bridging-Header.h";
 			};
 			name = Release;
 		};
-		C185EAF81BB0321400989A80 /* Debug */ = {
+		C1CB0F8F1BC08087000FA9A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -435,7 +508,7 @@
 			};
 			name = Debug;
 		};
-		C185EAF91BB0321400989A80 /* Release */ = {
+		C1CB0F901BC08087000FA9A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -447,7 +520,7 @@
 			};
 			name = Release;
 		};
-		C185EAFB1BB0321400989A80 /* Debug */ = {
+		C1CB0F921BC08087000FA9A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = MissionControlUITests/Info.plist;
@@ -459,7 +532,7 @@
 			};
 			name = Debug;
 		};
-		C185EAFC1BB0321400989A80 /* Release */ = {
+		C1CB0F931BC08087000FA9A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = MissionControlUITests/Info.plist;
@@ -474,53 +547,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C185EAC41BB0321400989A80 /* Build configuration list for PBXProject "MissionControl" */ = {
+		C1CB0F5C1BC08087000FA9A1 /* Build configuration list for PBXProject "MissionControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C185EAF21BB0321400989A80 /* Debug */,
-				C185EAF31BB0321400989A80 /* Release */,
+				C1CB0F891BC08087000FA9A1 /* Debug */,
+				C1CB0F8A1BC08087000FA9A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C185EAF41BB0321400989A80 /* Build configuration list for PBXNativeTarget "MissionControl" */ = {
+		C1CB0F8B1BC08087000FA9A1 /* Build configuration list for PBXNativeTarget "MissionControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C185EAF51BB0321400989A80 /* Debug */,
-				C185EAF61BB0321400989A80 /* Release */,
+				C1CB0F8C1BC08087000FA9A1 /* Debug */,
+				C1CB0F8D1BC08087000FA9A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		C185EAF71BB0321400989A80 /* Build configuration list for PBXNativeTarget "MissionControlTests" */ = {
+		C1CB0F8E1BC08087000FA9A1 /* Build configuration list for PBXNativeTarget "MissionControlTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C185EAF81BB0321400989A80 /* Debug */,
-				C185EAF91BB0321400989A80 /* Release */,
+				C1CB0F8F1BC08087000FA9A1 /* Debug */,
+				C1CB0F901BC08087000FA9A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		C185EAFA1BB0321400989A80 /* Build configuration list for PBXNativeTarget "MissionControlUITests" */ = {
+		C1CB0F911BC08087000FA9A1 /* Build configuration list for PBXNativeTarget "MissionControlUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C185EAFB1BB0321400989A80 /* Debug */,
-				C185EAFC1BB0321400989A80 /* Release */,
+				C1CB0F921BC08087000FA9A1 /* Debug */,
+				C1CB0F931BC08087000FA9A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C185EAD31BB0321400989A80 /* MissionControl.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C185EAD41BB0321400989A80 /* MissionControl.xcdatamodel */,
-			);
-			currentVersion = C185EAD41BB0321400989A80 /* MissionControl.xcdatamodel */;
-			path = MissionControl.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = C185EAC11BB0321400989A80 /* Project object */;
+	rootObject = C1CB0F591BC08087000FA9A1 /* Project object */;
 }

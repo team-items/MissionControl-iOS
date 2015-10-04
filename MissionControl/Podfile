@@ -1,0 +1,15 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'MissionControl' do
+pod 'BEMSimpleLineGraph'
+end
+
+target 'MissionControlTests' do
+
+end
+
+target 'MissionControlUITests' do
+
+end
+
