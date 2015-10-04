@@ -17,7 +17,7 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        for (var i = 1; i < 50; i++){
+        for (var i = 1; i < 20; i++){
             arrayOfValues.append(Int(arc4random_uniform(1025)))
         }
         
@@ -34,8 +34,8 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
       //  graph.autoScaleYAxis = false
         
       
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
-        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "update", userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
     }
     func maxValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
