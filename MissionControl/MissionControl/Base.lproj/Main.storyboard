@@ -126,16 +126,14 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Djn-Mw-Wdx">
-                                            <rect key="frame" x="510" y="4" width="32" height="30"/>
-                                            <state key="normal" title="Hide"/>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xF-3D-HyG">
                                             <rect key="frame" x="436" y="4" width="66" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="M5h-Ve-107"/>
                                             </constraints>
-                                            <state key="normal" title="Pause"/>
+                                            <state key="normal" title="Pause">
+                                                <color key="titleColor" red="0.95686274509803915" green="0.19607843137254902" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="pause:" destination="5Us-go-DsW" eventType="touchUpInside" id="0NB-cd-rmU"/>
                                             </connections>
@@ -177,6 +175,12 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Djn-Mw-Wdx">
+                                            <rect key="frame" x="510" y="4" width="32" height="30"/>
+                                            <state key="normal" title="Hide">
+                                                <color key="titleColor" red="0.95686274510000002" green="0.1960784314" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Djn-Mw-Wdx" firstAttribute="top" secondItem="noK-31-WTp" secondAttribute="topMargin" constant="-4" id="17p-rc-ZTx"/>
