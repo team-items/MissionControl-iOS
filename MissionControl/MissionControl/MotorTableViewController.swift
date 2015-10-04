@@ -12,7 +12,8 @@ class MotorTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        navigationController!.navigationBar.barTintColor = UIColor(netHex:0xed5758)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

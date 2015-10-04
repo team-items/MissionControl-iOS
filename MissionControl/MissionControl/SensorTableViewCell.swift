@@ -16,7 +16,12 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
         // Initialization code
         graph.dataSource = self
         graph.delegate = self
-        graph.colorBackgroundYaxis = UIColor.whiteColor()
+        graph.enableReferenceAxisFrame = true
+        graph.enableRightReferenceAxisFrameLine = true
+        graph.enableTopReferenceAxisFrameLine = true
+        graph.enablePopUpReport = true
+        graph.colorPoint = UIColor(netHex: 0xf43254)
+        graph.colorBackgroundPopUplabel = UIColor(netHex: 0xf43254)
         
         
     }
@@ -33,5 +38,18 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
 
         // Configure the view for the selected state
     }
-
+    
+}
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
 }
