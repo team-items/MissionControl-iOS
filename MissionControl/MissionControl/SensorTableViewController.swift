@@ -9,7 +9,7 @@
 import UIKit
 
 class SensorTableViewController: UITableViewController {
-    var sensors = [0,0,0]
+    var sensors = [true,true,true]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -46,7 +46,7 @@ class SensorTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath)
-
+        
         // Configure the cell...
 
         return cell
@@ -57,6 +57,7 @@ class SensorTableViewController: UITableViewController {
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        
         return true
     }
     
@@ -73,21 +74,52 @@ class SensorTableViewController: UITableViewController {
         }    
     }
     
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
+        if !sensors[indexPath.row]{
+            cell.graph.alpha = 1
+        }
+        else{
+           cell.graph.alpha = 0
+        }
+        
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+        print(cell.ispaused)
+        if cell.ispaused{
+        cell.pauseButton.setTitle("Resume", forState: UIControlState.Normal)
+        }
+        sensors[indexPath.row] = !sensors[indexPath.row]
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
 
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+            if sensors[indexPath.row]{
+            return 209
+        }
+        else{
+            return 38
+            }
+    }
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
     }
-    */
+    
 
-    /*
+
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+*/
+    
 
     /*
     // MARK: - Navigation

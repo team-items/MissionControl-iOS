@@ -11,16 +11,22 @@ import UIKit
 class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate{
     var arrayOfValues = [0]
     var ispaused = false
+    var expanded = false
+    
+    var tableView = UITableView()
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     
+    @IBOutlet weak var sensorLabel: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        if ispaused{
+        pauseButton.setTitle("Resume", forState: UIControlState.Normal)
+        }
         for (var i = 1; i < 20; i++){
             arrayOfValues.append(Int(arc4random_uniform(1025)))
         }
-        
         graph.dataSource = self
         graph.delegate = self
         graph.enableReferenceAxisFrame = true
@@ -70,7 +76,7 @@ pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
         return CGFloat( self.arrayOfValues[index])
     }
     override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(false, animated: false)
+        super.setSelected(selected, animated: false)
 
         // Configure the view for the selected state
     }
@@ -88,4 +94,5 @@ extension UIColor {
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
+    
 }
