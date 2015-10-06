@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +24,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="0.0"/>
+            <point key="canvasLocation" x="802" y="0.0"/>
         </scene>
         <!--Servos-->
         <scene sceneID="TgG-pW-2HX">
@@ -318,6 +319,7 @@
         <!--Connect-->
         <scene sceneID="Xyo-9B-nQI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8M-4K-eSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="qfS-zw-iFc" customClass="ConnectViewController" customModule="MissionControl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DAB-5u-ItY"/>
@@ -331,8 +333,26 @@
                                 <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXU-mn-OBB">
-                                <rect key="frame" x="20" y="271" width="248" height="21"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IP or Hostname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rXb-Zv-DIb">
+                                <rect key="frame" x="232" y="81" width="137" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="137" id="iy4-NX-j5L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This IP or Hostname is not avalaible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIa-cW-KZR">
+                                <rect key="frame" x="158" y="119" width="284" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="284" id="20e-xU-AU4"/>
+                                    <constraint firstAttribute="height" constant="21" id="pUL-t4-gpO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No qr Code found !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXU-mn-OBB">
+                                <rect key="frame" x="176" y="271" width="248" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ZqS-hN-rHi"/>
                                     <constraint firstAttribute="width" constant="248" id="cwC-02-2KO"/>
@@ -351,9 +371,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rXU-mn-OBB" firstAttribute="top" secondItem="DAB-5u-ItY" secondAttribute="bottom" constant="207" id="4EC-pe-Mhf"/>
+                            <constraint firstItem="OIa-cW-KZR" firstAttribute="top" secondItem="Pcp-nR-e5R" secondAttribute="top" constant="119" id="5wx-lg-fLn"/>
                             <constraint firstItem="jKz-zj-gQz" firstAttribute="bottom" secondItem="jMk-M9-ygJ" secondAttribute="top" id="6DC-4k-dJZ"/>
                             <constraint firstItem="jKz-zj-gQz" firstAttribute="top" secondItem="Pcp-nR-e5R" secondAttribute="top" constant="300" id="EVU-ra-ckd"/>
-                            <constraint firstItem="rXU-mn-OBB" firstAttribute="leading" secondItem="Pcp-nR-e5R" secondAttribute="leadingMargin" id="k4A-rF-fOm"/>
+                            <constraint firstItem="OIa-cW-KZR" firstAttribute="top" secondItem="rXb-Zv-DIb" secondAttribute="bottom" constant="8" symbolic="YES" id="SFa-cB-AdK"/>
+                            <constraint firstItem="OIa-cW-KZR" firstAttribute="centerX" secondItem="jKz-zj-gQz" secondAttribute="centerX" id="UqM-oX-lSf"/>
+                            <constraint firstItem="OIa-cW-KZR" firstAttribute="centerX" secondItem="rXb-Zv-DIb" secondAttribute="centerX" id="fgw-Cd-KN9"/>
+                            <constraint firstItem="rXb-Zv-DIb" firstAttribute="top" secondItem="DAB-5u-ItY" secondAttribute="bottom" constant="17" id="i7N-fj-OHg"/>
+                            <constraint firstItem="rXU-mn-OBB" firstAttribute="leading" secondItem="Pcp-nR-e5R" secondAttribute="centerXWithinMargins" constant="-124" id="k4A-rF-fOm" userLabel="Message Label.centerX = centerX"/>
                             <constraint firstAttribute="trailing" secondItem="jKz-zj-gQz" secondAttribute="trailing" id="r4F-M4-YsV"/>
                             <constraint firstItem="jKz-zj-gQz" firstAttribute="leading" secondItem="Pcp-nR-e5R" secondAttribute="leading" id="wZW-6B-Wos"/>
                         </constraints>
@@ -370,9 +395,8 @@
                         <outlet property="videoView" destination="jKz-zj-gQz" id="ByO-HU-xUb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S8M-4K-eSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="0.0"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
         <!--Sensors-->
         <scene sceneID="L7q-vv-9xu">
