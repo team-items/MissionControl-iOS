@@ -97,6 +97,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Controls" id="jaq-D7-xgL">
+                        <barButtonItem key="leftBarButtonItem" title="Disconnect" id="AfZ-5c-kzG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="A5X-OJ-fdn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -216,6 +217,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sensors" id="8bN-Co-92B">
+                        <barButtonItem key="leftBarButtonItem" title="Disconnect" id="l44-wd-AlV"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="bzf-Pe-beC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
