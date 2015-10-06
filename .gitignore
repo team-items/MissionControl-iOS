@@ -16,3 +16,11 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+MissionControl/screenshots
+MissionControl/Snapfile
+
+MissionControl/snapshot-iPad.js
+
+MissionControl/snapshot.js
+
+MissionControl/SnapshotHelper.js
