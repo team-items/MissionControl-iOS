@@ -10,6 +10,8 @@ import UIKit
 
 class SensorTableViewController: UITableViewController {
     var sensors = [true,true,true]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -105,6 +107,13 @@ class SensorTableViewController: UITableViewController {
             return 38
             }
     }
+    
+    
+    
+    @IBAction func disconnect(sender: UIBarButtonItem) {
+         dismissViewControllerAnimated(true, completion: nil)
+    }
+   
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {

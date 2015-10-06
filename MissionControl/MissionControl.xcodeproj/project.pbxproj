@@ -19,6 +19,7 @@
 		C1CB0F871BC08087000FA9A1 /* MissionControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F861BC08087000FA9A1 /* MissionControlUITests.swift */; };
 		C1CB0F971BC082E6000FA9A1 /* MotorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */; };
 		C1CB0F991BC0857F000FA9A1 /* MotorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */; };
+		C1FB94981BC4012E00601E6D /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FB94971BC4012E00601E6D /* ConnectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		C1CB0F881BC08087000FA9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewController.swift; sourceTree = "<group>"; };
 		C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewCell.swift; sourceTree = "<group>"; };
+		C1FB94971BC4012E00601E6D /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MissionControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,7 @@
 				C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */,
 				C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */,
 				C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */,
+				C1FB94971BC4012E00601E6D /* ConnectViewController.swift */,
 			);
 			path = MissionControl;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1FB94981BC4012E00601E6D /* ConnectViewController.swift in Sources */,
 				C1CB0F971BC082E6000FA9A1 /* MotorTableViewController.swift in Sources */,
 				C122FAC31BC3E8DE001AD82C /* EditTableViewController.swift in Sources */,
 				C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */,

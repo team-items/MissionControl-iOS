@@ -10,6 +10,7 @@ import UIKit
 
 class MotorTableViewController: UITableViewController {
     var motors = [0,0,0]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
@@ -73,6 +74,11 @@ class MotorTableViewController: UITableViewController {
         }    
     }
     
+    
+    
+    @IBAction func disc(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // Override to support rearranging the table view.
