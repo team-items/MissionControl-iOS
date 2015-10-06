@@ -15,7 +15,7 @@ class MotorTableViewController: UITableViewController {
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
         tabBarController!.tabBar.tintColor = UIColor(netHex: 0xf43254)
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
 
         // Uncomment the following line to preserve selection between presentations
