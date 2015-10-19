@@ -7,26 +7,36 @@
 //
 
 import UIKit
-
-class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate{
-    var arrayOfValues = [0]
+import Charts
+class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
+    var arrayOfValues = [ChartDataSet]()
     var ispaused = false
     var expanded = false
-    
+    var timer = NSTimer()
     var tableView = UITableView()
-    @IBOutlet weak var graph: BEMSimpleLineGraphView!
-    
+    var set1: LineChartDataSet = LineChartDataSet()
+    @IBOutlet weak var graph: LineChartView!
     @IBOutlet weak var sensorLabel: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
+    var points = 60
+    var updateRate = 20
+    var visible = 30
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         if ispaused{
         pauseButton.setTitle("Resume", forState: UIControlState.Normal)
         }
-        for (var i = 1; i < 50; i++){
-            arrayOfValues.append(Int(arc4random_uniform(1025)))
-        }
+        
+        graph.delegate = self
+        graph.notifyDataSetChanged();
+        graph.scaleYEnabled = false
+        graph.scaleXEnabled = false
+        graph.legend.enabled = false
+        graph.xAxis.drawLabelsEnabled = false
+       
+        setDataCount(points, range: 1024)
+        /*
         graph.dataSource = self
         graph.delegate = self
         graph.enableReferenceAxisFrame = true
@@ -38,20 +48,42 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
         graph.animationGraphEntranceTime = 0
         graph.clearsContextBeforeDrawing = false
         graph.animationGraphStyle = BEMLineAnimation.None
-        
+        */
       //  graph.autoScaleYAxis = false
         
       
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
     }
-    func maxValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
-        return 1024
+    func setDataCount(count: Int, range: Double) {
+        var xVals: [NSObject] =  [NSObject]()
+        for var i = 0; i < count; i++ {
+            xVals.append(String(i))
+        }
+        var yVals: [ChartDataEntry] = [ChartDataEntry]()
+        for var i = 0; i < count; i++ {
+            var mult: UInt32 = (UInt32(range) + 1)
+            var val: Double = Double((arc4random_uniform(mult)) + 3)
+            yVals.append(ChartDataEntry(value: val, xIndex: i))
+        }
+        set1 = LineChartDataSet(yVals: yVals, label: "DataSet 1")
+        set1.drawValuesEnabled = false
+        set1.drawCirclesEnabled = false
+        set1.setColor(UIColor.blackColor())
+        set1.setCircleColor(UIColor.blackColor())
+        set1.lineWidth = 1.0
+        set1.circleRadius = 3.0
+        set1.drawCircleHoleEnabled = false
+        set1.fillAlpha = 65 / 255.0
+        set1.fillColor = UIColor.blackColor()
+        var dataSets: [ChartDataSet] = [ChartDataSet]()
+        dataSets.append(set1)
+        var data: LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        
+        graph.data = data
     }
-    func minValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
-        return 0
-    }
+    
     @IBAction func pause(sender: UIButton) {
         ispaused = !ispaused
         if ispaused{
@@ -62,22 +94,33 @@ pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
     
     func update(){
         if (!ispaused){
-    
-        arrayOfValues.append(Int(arc4random_uniform(1025)))
-        arrayOfValues.removeFirst()
-        graph.reloadGraph()
+            var mult: UInt32 = (UInt32(1024) + 1)
+            var val: Double = Double((arc4random_uniform(mult)) + 3)
+            
+            var data = graph.data!
+            var set = data.getDataSetByIndex(0);
+            data.addXValue("")
+            data.removeXValue(0)
+            
+            set.removeEntry(xIndex: 0)
+            data.addEntry(ChartDataEntry(value: val, xIndex: set.entryCount + 1),dataSetIndex: 0)
+            for s in set.yVals{
+                s.xIndex = s.xIndex - 1
+            }
+            graph.notifyDataSetChanged()
+            graph.setVisibleXRangeMaximum(CGFloat(visible));
+            
+            
+            // move to the latest entry
+            graph.moveViewToX(points - visible);
+            
+            
+        //graph.reloadGraph()
         
         }
         
     }
-    func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return self.arrayOfValues.count
-        
-    }
-    
-    func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
-        return CGFloat( self.arrayOfValues[index])
-    }
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: false)
 
