@@ -29,29 +29,28 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         }
         
         graph.delegate = self
-        graph.notifyDataSetChanged();
+        
+        graph.autoScaleMinMaxEnabled = false
         graph.scaleYEnabled = false
         graph.scaleXEnabled = false
         graph.legend.enabled = false
         graph.xAxis.drawLabelsEnabled = false
-       
+        graph.gridBackgroundColor = UIColor.whiteColor()
+        graph.setScaleEnabled(false)
+        graph.drawBordersEnabled = true
+        graph.borderColor = UIColor(netHex: 0xf43254)
+        graph.gridBackgroundColor = UIColor.whiteColor()
+        var axis = graph.getAxis(ChartYAxis.AxisDependency.Left)
+        axis.drawGridLinesEnabled = false
+        axis.drawAxisLineEnabled = false
+        axis.spaceTop = 0
+         var axis2 = graph.getAxis(ChartYAxis.AxisDependency.Right)
+        axis2.drawGridLinesEnabled = true
+        axis2.drawAxisLineEnabled = false
+        axis2.spaceTop = 0
+        graph.descriptionText = ""
         setDataCount(points, range: 1024)
-        /*
-        graph.dataSource = self
-        graph.delegate = self
-        graph.enableReferenceAxisFrame = true
-        graph.enableRightReferenceAxisFrameLine = true
-        graph.enableTopReferenceAxisFrameLine = true
-        graph.enablePopUpReport = true
-        graph.colorPoint = UIColor(netHex: 0xf43254)
-        graph.colorBackgroundPopUplabel = UIColor(netHex: 0xf43254)
-        graph.animationGraphEntranceTime = 0
-        graph.clearsContextBeforeDrawing = false
-        graph.animationGraphStyle = BEMLineAnimation.None
-        */
-      //  graph.autoScaleYAxis = false
-        
-      
+        graph.notifyDataSetChanged();
         timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
@@ -70,13 +69,13 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         set1 = LineChartDataSet(yVals: yVals, label: "DataSet 1")
         set1.drawValuesEnabled = false
         set1.drawCirclesEnabled = false
-        set1.setColor(UIColor.blackColor())
-        set1.setCircleColor(UIColor.blackColor())
+        set1.setColor(UIColor(netHex: 0xf43254))
+        set1.setCircleColor(UIColor(netHex: 0xf43254))
         set1.lineWidth = 1.0
-        set1.circleRadius = 3.0
+        set1.circleRadius = 2.0
         set1.drawCircleHoleEnabled = false
         set1.fillAlpha = 65 / 255.0
-        set1.fillColor = UIColor.blackColor()
+        
         var dataSets: [ChartDataSet] = [ChartDataSet]()
         dataSets.append(set1)
         var data: LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
