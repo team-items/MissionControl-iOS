@@ -1,8 +1,8 @@
 //
-//  ChartMarker.swift
-//  Charts
+//  BalloonMarker.swift
+//  ChartsDemo
 //
-//  Created by Daniel Cohen Gindi on 3/3/15.
+//  Created by Daniel Cohen Gindi on 19/3/15.
 //
 //  Copyright 2015 Daniel Cohen Gindi & Philipp Jahoda
 //  A port of MPAndroidChart for iOS
@@ -11,16 +11,11 @@
 //  https://github.com/danielgindi/ios-charts
 //
 
-import Foundation
-import UIKit
+import UIKit;
+import Charts
 
-public class ChartMarker: ChartComponentBase
+public class BalloonMarker: ChartMarker
 {
-    /// The marker image to render
-    public var image: UIImage?
-    
-    /// Use this to return the desired offset you wish the MarkerView to have on the x-axis.
-    public var offset: CGPoint = CGPoint()
     public var color: UIColor?
     public var arrowSize = CGSize(width: 15, height: 11)
     public var font: UIFont?
@@ -45,9 +40,9 @@ public class ChartMarker: ChartComponentBase
         _paragraphStyle?.alignment = .Center
     }
     
-    public  var size: CGSize { return _size; }
+    public override var size: CGSize { return _size; }
     
-    public func draw(context context: CGContext, point: CGPoint)
+    public override func draw(context context: CGContext, point: CGPoint)
     {
         if (labelns == nil)
         {
@@ -100,7 +95,7 @@ public class ChartMarker: ChartComponentBase
         CGContextRestoreGState(context)
     }
     
-    public func refreshContent(entry entry: ChartDataEntry, highlight: ChartHighlight)
+    public override func refreshContent(entry entry: ChartDataEntry, highlight: ChartHighlight)
     {
         let label = entry.value.description
         labelns = label as NSString
@@ -115,5 +110,4 @@ public class ChartMarker: ChartComponentBase
         _size.width = max(minimumSize.width, _size.width)
         _size.height = max(minimumSize.height, _size.height)
     }
-
 }

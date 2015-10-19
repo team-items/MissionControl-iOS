@@ -477,11 +477,11 @@ public class ChartViewBase: UIView, ChartAnimatorDelegate
                 if (pos.y - markerSize.height <= 0.0)
                 {
                     let y = markerSize.height - pos.y
-                    marker!.draw(context: context, point: CGPoint(x: pos.x, y: pos.y + y))
+                    marker!.draw(context: context!, point: CGPoint(x: pos.x, y: pos.y + y))
                 }
                 else
                 {
-                    marker!.draw(context: context, point: pos)
+                    marker!.draw(context: context!, point: pos)
                 }
             }
         }
