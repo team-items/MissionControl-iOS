@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5BBACE49B4BB7F46481388E /* libPods-MissionControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */; };
+		ADEAD27E5B1680EE004B1344 /* Pods_MissionControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C122FAC31BC3E8DE001AD82C /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */; };
 		C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */; };
 		C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */; };
@@ -41,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		0A1EA25430BA748D1D622055 /* Pods-MissionControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.release.xcconfig"; sourceTree = "<group>"; };
+		4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MissionControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
 		C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewController.swift; sourceTree = "<group>"; };
 		C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewCell.swift; sourceTree = "<group>"; };
 		C1FB94971BC4012E00601E6D /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
-		EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MissionControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5BBACE49B4BB7F46481388E /* libPods-MissionControl.a in Frameworks */,
+				ADEAD27E5B1680EE004B1344 /* Pods_MissionControl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +93,7 @@
 		795C586B1C4B163378D1442D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF5CE20881076E962C3AEACA /* libPods-MissionControl.a */,
+				4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,6 +178,7 @@
 				C1CB0F5E1BC08087000FA9A1 /* Frameworks */,
 				C1CB0F5F1BC08087000FA9A1 /* Resources */,
 				6DBEFE67F577B9BD20A8E80D /* Copy Pods Resources */,
+				9779124F5E075746C9E823C6 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -311,6 +312,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9779124F5E075746C9E823C6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EB1E9BB72CE281BEC4288587 /* Check Pods Manifest.lock */ = {

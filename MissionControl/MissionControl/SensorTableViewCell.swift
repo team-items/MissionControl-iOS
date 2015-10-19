@@ -24,7 +24,7 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
         if ispaused{
         pauseButton.setTitle("Resume", forState: UIControlState.Normal)
         }
-        for (var i = 1; i < 20; i++){
+        for (var i = 1; i < 50; i++){
             arrayOfValues.append(Int(arc4random_uniform(1025)))
         }
         graph.dataSource = self
@@ -36,11 +36,13 @@ class SensorTableViewCell: UITableViewCell, BEMSimpleLineGraphDataSource, BEMSim
         graph.colorPoint = UIColor(netHex: 0xf43254)
         graph.colorBackgroundPopUplabel = UIColor(netHex: 0xf43254)
         graph.animationGraphEntranceTime = 0
+        graph.clearsContextBeforeDrawing = false
+        graph.animationGraphStyle = BEMLineAnimation.None
         
       //  graph.autoScaleYAxis = false
         
       
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "update", userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
     }
@@ -60,10 +62,11 @@ pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
     
     func update(){
         if (!ispaused){
-        
+    
         arrayOfValues.append(Int(arc4random_uniform(1025)))
         arrayOfValues.removeFirst()
         graph.reloadGraph()
+        
         }
         
     }

@@ -1,0 +1,6 @@
+framework module Pods_MissionControl {
+  umbrella header "Pods-MissionControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

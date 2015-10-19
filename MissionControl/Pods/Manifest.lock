@@ -1,10 +1,13 @@
 PODS:
   - BEMSimpleLineGraph (4.1)
+  - Charts (2.1.4)
 
 DEPENDENCIES:
   - BEMSimpleLineGraph
+  - Charts
 
 SPEC CHECKSUMS:
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
+  Charts: 870589b6b4bf8468baacea8869c28983d71f602c
 
 COCOAPODS: 0.38.2
