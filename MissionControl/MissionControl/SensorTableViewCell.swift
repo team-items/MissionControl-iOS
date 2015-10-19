@@ -11,6 +11,7 @@ import Charts
 
 class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var arrayOfValues = [ChartDataSet]()
+    var oldValues = [Double]()
     var ispaused = false
     var expanded = false
     var timer = NSTimer()
@@ -19,9 +20,9 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     @IBOutlet weak var graph: LineChartView!
     @IBOutlet weak var sensorLabel: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
-    var points = 60
+    var points = 40
     var updateRate = 20
-    var visible = 30
+    var visible = 40
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,8 +42,8 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         graph.drawBordersEnabled = true
         graph.borderColor = UIColor(netHex: 0xf43254)
         graph.gridBackgroundColor = UIColor.whiteColor()
-        graph.highlightEnabled = true
-        graph.highlightPerDragEnabled = true
+       // graph.highlightEnabled = true
+        //graph.highlightPerDragEnabled = true
         var axis = graph.getAxis(ChartYAxis.AxisDependency.Left)
         axis.drawGridLinesEnabled = false
         axis.drawAxisLineEnabled = false
@@ -56,7 +57,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         var marker: ChartMarker = ChartMarker(color: UIColor(netHex: 0xf43254), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         
         marker.minimumSize = CGSizeMake(80, 40)
-        graph.marker = marker
+       // graph.marker = marker
 
         graph.notifyDataSetChanged();
         timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
@@ -94,9 +95,41 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     @IBAction func pause(sender: UIButton) {
         ispaused = !ispaused
         if ispaused{
+            var data = graph.data!
+            var set = data.getDataSetByIndex(0);
+            for entry in set.yVals {
+                oldValues.append(entry.value)
+                set.removeEntry(entry)
+            }
+            for  (var i = 0; i < oldValues.count; i++){
+                data.addXValue("")
+                data.addEntry(ChartDataEntry(value: oldValues[i], xIndex: i), dataSetIndex: 0)
+            }
+            graph.notifyDataSetChanged()
+            graph.setVisibleXRangeMaximum(CGFloat(visible));
+            graph.setVisibleXRangeMinimum(0)
+            graph.moveViewToX(oldValues.count - visible);
             pauseButton.setTitle("Resume", forState: UIControlState.Normal)
         }else{
-pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
+            pauseButton.setTitle("Pause", forState: UIControlState.Normal)
+            var data = graph.data!
+            var set = data.getDataSetByIndex(0);
+            print(set.yVals.count - visible)
+            print(set.yVals.count)
+            var vari = set.yVals.count - visible
+            var vals: [ChartDataEntry] = Array(set.yVals.dropFirst(vari))
+            for entry in set.yVals{
+                graph.data!.removeXValue(0)
+                graph.data!.getDataSetByIndex(0).removeEntry(entry)
+               
+            }
+            for (var index = 0; index < visible; index++){
+                set.addEntry(ChartDataEntry(value: Double(vals[index].value), xIndex: index))
+            }
+            graph.notifyDataSetChanged()
+            graph.setVisibleXRangeMaximum(CGFloat(visible));
+            graph.moveViewToX(0);
+        }
     }
     
     func update(){
@@ -108,7 +141,9 @@ pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
             var set = data.getDataSetByIndex(0);
             data.addXValue("")
             data.removeXValue(0)
-            
+            if var x = set.entryForXIndex(0){
+            oldValues.append(set.entryForXIndex(0)!.value)
+            }
             set.removeEntry(xIndex: 0)
             data.addEntry(ChartDataEntry(value: val, xIndex: set.entryCount + 1),dataSetIndex: 0)
             for s in set.yVals{
@@ -116,13 +151,10 @@ pauseButton.setTitle("Pause", forState: UIControlState.Normal)        }
             }
             graph.notifyDataSetChanged()
             graph.setVisibleXRangeMaximum(CGFloat(visible));
-            
+            graph.setVisibleXRangeMinimum(CGFloat(visible))
             
             // move to the latest entry
-            graph.moveViewToX(points - visible);
-            
-            
-        //graph.reloadGraph()
+            graph.moveViewToX(0);
         
         }
         
