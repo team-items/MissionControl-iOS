@@ -42,8 +42,8 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         graph.drawBordersEnabled = true
         graph.borderColor = UIColor(netHex: 0xf43254)
         graph.gridBackgroundColor = UIColor.whiteColor()
-       // graph.highlightEnabled = true
-        //graph.highlightPerDragEnabled = true
+        graph.highlightEnabled = true
+        graph.highlightPerDragEnabled = true
         var axis = graph.getAxis(ChartYAxis.AxisDependency.Left)
         axis.drawGridLinesEnabled = false
         axis.drawAxisLineEnabled = false
@@ -57,7 +57,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         var marker: ChartMarker = ChartMarker(color: UIColor(netHex: 0xf43254), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         
         marker.minimumSize = CGSizeMake(80, 40)
-       // graph.marker = marker
+       graph.marker = marker
 
         graph.notifyDataSetChanged();
         timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
