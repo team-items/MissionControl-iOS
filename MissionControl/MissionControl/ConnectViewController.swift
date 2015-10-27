@@ -20,7 +20,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
-    let client:TCPClient = TCPClient(addr: "items.ninja", port: 62626)
+    var client:TCPClient = TCPClient(addr: "items.ninja", port: 62626)
     let connREQ = "{\"ConnREQ\" : {\"HardwareType\" : \"Smartphone\",\"PreferredCrypto\" : \"None\",\"SupportedDT\" : [\"Bool\", \"String\", \"Integer\", \"Slider\", \"Button\"]}}"
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
@@ -127,7 +127,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func connect(url: String)->Bool{
         print("Trying to connect")
-        TCPClient(addr: url, port: 62626)
+        client = TCPClient(addr: url, port: 62626)
         let (_, errorMsg) = client.connect(timeout: 10)
         if(errorMsg == "connect success"){
             client.send(str: connREQ)
