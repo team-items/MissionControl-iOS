@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		ADEAD27E5B1680EE004B1344 /* Pods_MissionControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C122FAC31BC3E8DE001AD82C /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */; };
+		C163AAC11BDED9090009A022 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = C163AABF1BDED9090009A022 /* ytcpsocket.c */; };
+		C163AAC21BDED9090009A022 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C163AAC01BDED9090009A022 /* ytcpsocket.swift */; };
+		C163AAC41BDED9F30009A022 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C163AAC31BDED9F30009A022 /* TabViewController.swift */; };
+		C163AAC61BDEDC650009A022 /* MissionChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C163AAC51BDEDC650009A022 /* MissionChartMarker.swift */; };
 		C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */; };
 		C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */; };
 		C1CB0F651BC08087000FA9A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F641BC08087000FA9A1 /* AppDelegate.swift */; };
@@ -43,6 +47,10 @@
 		0A1EA25430BA748D1D622055 /* Pods-MissionControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.release.xcconfig"; sourceTree = "<group>"; };
 		4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MissionControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		C163AABF1BDED9090009A022 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
+		C163AAC01BDED9090009A022 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
+		C163AAC31BDED9F30009A022 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		C163AAC51BDEDC650009A022 /* MissionChartMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionChartMarker.swift; sourceTree = "<group>"; };
 		C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
 		C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
@@ -129,12 +137,16 @@
 				C1CB0F6F1BC08087000FA9A1 /* LaunchScreen.storyboard */,
 				C1CB0F721BC08087000FA9A1 /* Info.plist */,
 				C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */,
+				C163AABF1BDED9090009A022 /* ytcpsocket.c */,
+				C163AAC01BDED9090009A022 /* ytcpsocket.swift */,
 				C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */,
 				C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */,
 				C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */,
 				C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */,
 				C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */,
 				C1FB94971BC4012E00601E6D /* ConnectViewController.swift */,
+				C163AAC31BDED9F30009A022 /* TabViewController.swift */,
+				C163AAC51BDEDC650009A022 /* MissionChartMarker.swift */,
 			);
 			path = MissionControl;
 			sourceTree = "<group>";
@@ -354,9 +366,13 @@
 				C1FB94981BC4012E00601E6D /* ConnectViewController.swift in Sources */,
 				C1CB0F971BC082E6000FA9A1 /* MotorTableViewController.swift in Sources */,
 				C122FAC31BC3E8DE001AD82C /* EditTableViewController.swift in Sources */,
+				C163AAC61BDEDC650009A022 /* MissionChartMarker.swift in Sources */,
+				C163AAC21BDED9090009A022 /* ytcpsocket.swift in Sources */,
 				C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */,
 				C1CB0F991BC0857F000FA9A1 /* MotorTableViewCell.swift in Sources */,
 				C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */,
+				C163AAC11BDED9090009A022 /* ytcpsocket.c in Sources */,
+				C163AAC41BDED9F30009A022 /* TabViewController.swift in Sources */,
 				C1CB0F651BC08087000FA9A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

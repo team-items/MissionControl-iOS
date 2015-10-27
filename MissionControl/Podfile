@@ -4,6 +4,7 @@ use_frameworks!
 target 'MissionControl' do
 pod 'BEMSimpleLineGraph'
 pod 'Charts'
+pod 'SwiftyJSON'
 end
 
 target 'MissionControlTests' do

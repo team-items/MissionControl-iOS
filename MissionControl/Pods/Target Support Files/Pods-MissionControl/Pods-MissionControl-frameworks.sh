@@ -54,8 +54,10 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-MissionControl/BEMSimpleLineGraph.framework'
   install_framework 'Pods-MissionControl/Charts.framework'
+  install_framework 'Pods-MissionControl/SwiftyJSON.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-MissionControl/BEMSimpleLineGraph.framework'
   install_framework 'Pods-MissionControl/Charts.framework'
+  install_framework 'Pods-MissionControl/SwiftyJSON.framework'
 fi

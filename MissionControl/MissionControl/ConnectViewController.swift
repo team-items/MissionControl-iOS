@@ -8,21 +8,27 @@
 
 import UIKit
 import AVFoundation
-class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+import SwiftyJSON
+class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var connect: UIBarButtonItem!
     @IBOutlet weak var videoView: UIView!
     
     @IBOutlet weak var messageLabel: UILabel!
     
+    @IBOutlet weak var hostIpField: UITextField!
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
-    
+    let client:TCPClient = TCPClient(addr: "items.ninja", port: 62626)
+    let connREQ = "{\"ConnREQ\" : {\"HardwareType\" : \"Smartphone\",\"PreferredCrypto\" : \"None\",\"SupportedDT\" : [\"Bool\", \"String\", \"Integer\", \"Slider\", \"Button\"]}}"
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hostIpField.delegate = self
+        hostIpField.autocorrectionType = UITextAutocorrectionType.No
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -98,6 +104,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
+                
                 launchApp(metadataObj.stringValue)
             }
         }
@@ -107,11 +114,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         let alertPrompt = UIAlertController(title: "Connect to Robot", message: "You're going to connect to \(decodedURL)", preferredStyle: .ActionSheet)
         let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             
-            if let url = NSURL(string: decodedURL) {
-                if UIApplication.sharedApplication().canOpenURL(url) {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-            }
+            connect(decodedURL)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
@@ -122,6 +125,47 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
     }
     
-
-
+    func connect(url: String)->Bool{
+        print("Trying to connect")
+        TCPClient(addr: url, port: 62626)
+        let (_, errorMsg) = client.connect(timeout: 10)
+        if(errorMsg == "connect success"){
+            client.send(str: connREQ)
+            var data = client.read(2048*10)
+            let jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
+            let response = JSON(data: jsonString.dataUsingEncoding(NSUTF8StringEncoding)!)
+            print(response)
+            if let res = response["ConnACK"].dictionary {
+                print("true")
+                data = client.read(2048*10)
+                client.send(str:  "{ \"ConnSTT\" : \"\" }")
+                performSegueWithIdentifier("connect", sender: self)
+                
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    @IBAction func connectClicked(sender: UIBarButtonItem) {
+        connect(hostIpField.text!)
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        if let _ = hostIpField.text {
+            if hostIpField.text!.characters.count > 0 {
+            connect.enabled = true
+            }
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+    }
+    
 }
