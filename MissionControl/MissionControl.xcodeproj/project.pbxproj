@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ADEAD27E5B1680EE004B1344 /* Pods_MissionControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ADEAD27E5B1680EE004B1344 /* Pods_MissionControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB1800B58801AD760B267A8 /* Pods_MissionControl.framework */; };
 		C122FAC31BC3E8DE001AD82C /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */; };
 		C163AAC11BDED9090009A022 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = C163AABF1BDED9090009A022 /* ytcpsocket.c */; };
 		C163AAC21BDED9090009A022 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C163AAC01BDED9090009A022 /* ytcpsocket.swift */; };
@@ -516,11 +516,14 @@
 			baseConfigurationReference = F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MissionControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = items.MissionControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MissionControl/Bridging-Header.h";
 			};
 			name = Debug;
@@ -530,11 +533,14 @@
 			baseConfigurationReference = 0A1EA25430BA748D1D622055 /* Pods-MissionControl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MissionControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = items.MissionControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MissionControl/Bridging-Header.h";
 			};
 			name = Release;

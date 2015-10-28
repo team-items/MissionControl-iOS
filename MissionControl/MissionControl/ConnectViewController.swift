@@ -114,7 +114,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         let alertPrompt = UIAlertController(title: "Connect to Robot", message: "You're going to connect to \(decodedURL)", preferredStyle: .ActionSheet)
         let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             
-            connect(decodedURL)
+            self.connect(decodedURL)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
