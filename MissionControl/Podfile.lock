@@ -1,16 +1,19 @@
 PODS:
   - BEMSimpleLineGraph (4.1)
   - Charts (2.1.4)
+  - JSONJoy-Swift (1.0.0)
   - SwiftyJSON (2.3.1)
 
 DEPENDENCIES:
   - BEMSimpleLineGraph
   - Charts
+  - JSONJoy-Swift (~> 1.0.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
   Charts: 870589b6b4bf8468baacea8869c28983d71f602c
+  JSONJoy-Swift: 3e8129c282470614da69759208e9c923732f6cb4
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
 
 COCOAPODS: 0.39.0

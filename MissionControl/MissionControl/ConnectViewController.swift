@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import SwiftyJSON
+import JSONJoy
 class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var connect: UIBarButtonItem!
@@ -24,7 +25,8 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     let connREQ = "{\"ConnREQ\" : {\"HardwareType\" : \"Smartphone\",\"PreferredCrypto\" : \"None\",\"SupportedDT\" : [\"Bool\", \"String\", \"Integer\", \"Slider\", \"Button\"]}}"
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
-    
+    let segmentSize = 2048
+    var conLAO: JSON = JSON("{}");
     override func viewDidLoad() {
         super.viewDidLoad()
         hostIpField.delegate = self
@@ -51,11 +53,11 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             print("\(error?.localizedDescription)")
             return
         }
-        
+        /*
         // Initialize the captureSession object.
         captureSession = AVCaptureSession()
         // Set the input device on the capture session.
-        captureSession?.addInput(input as! AVCaptureInput)
+        captureSession?.addInput(input as! AVCaptureInput) //emulator
         
         // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
         let captureMetadataOutput = AVCaptureMetadataOutput()
@@ -76,6 +78,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         // Move the message label to the top view
         view.bringSubviewToFront(messageLabel)
+*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,18 +129,29 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     func connect(url: String)->Bool{
+        
         print("Trying to connect")
         client = TCPClient(addr: url, port: 62626)
         let (_, errorMsg) = client.connect(timeout: 10)
         if(errorMsg == "connect success"){
             client.send(str: connREQ)
-            var data = client.read(2048*10)
-            let jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
-            let response = JSON(data: jsonString.dataUsingEncoding(NSUTF8StringEncoding)!)
+            var data = client.read(segmentSize*10)
+            var jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
+            print(jsonString)
+                        var response = JSON(data: jsonString.dataUsingEncoding(NSUTF8StringEncoding)!)
             print(response)
-            if let res = response["ConnACK"].dictionary {
-                print("true")
-                data = client.read(2048*10)
+            if let _ = response["ConnACK"].dictionary {
+                
+                data = client.read(segmentSize*10)
+                var jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
+                
+                print(jsonString)
+                data = client.read(segmentSize*10)
+                jsonString = jsonString.stringByAppendingString( NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)! as String)
+                
+                print(jsonString)
+                let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+                conLAO = JSON(data : dataFromString!)
                 client.send(str:  "{ \"ConnSTT\" : \"\" }")
                 performSegueWithIdentifier("connect", sender: self)
                 
@@ -145,6 +159,26 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             return true;
         }
         return false;
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "connect" {
+            let senContr = segue.destinationViewController as! TabViewController
+            let controller = senContr.viewControllers![0] as! UINavigationController
+            let destination = controller.visibleViewController as! SensorTableViewController
+            var sensors: [AnalogS] = [];
+            //do conlao here
+            for (sensorname,sensor)  in conLAO["ConnLAO"]["Information"]["Integer"].dictionaryValue{
+                var asensor:AnalogS = AnalogS(JSONDecoder(sensor.stringValue))
+                asensor.Name = sensorname
+                sensors.append(asensor)
+                print(asensor.MaxBound)
+            }
+            destination.asensors = sensors
+            destination.client = client
+        }
+        
     }
     
     @IBAction func connectClicked(sender: UIBarButtonItem) {
