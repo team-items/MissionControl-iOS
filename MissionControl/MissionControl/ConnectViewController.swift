@@ -173,7 +173,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 var asensor:AnalogS = AnalogS(JSONDecoder(sensor.stringValue))
                 asensor.Name = sensorname
                 sensors.append(asensor)
-                print(asensor.MaxBound)
+                
             }
             destination.asensors = sensors
             destination.client = client
