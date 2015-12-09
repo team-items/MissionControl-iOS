@@ -11,7 +11,7 @@ import UIKit
 class SensorTableViewController: UITableViewController {
     var sensors = [false,false,false,false,false,false,false,false,false,false,false,false]
     var asensors: [AnalogS] = []
-    var client:TCPClient = TCPClient(addr: "items.ninja", port: 62626)
+    var client:TCPClient = TCPClient()
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -21,6 +21,7 @@ class SensorTableViewController: UITableViewController {
         UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
 
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -102,7 +103,7 @@ class SensorTableViewController: UITableViewController {
             return 209
         }
         else{
-            return 38
+            return 45
             }
     }
     
