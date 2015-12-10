@@ -10,6 +10,9 @@ import UIKit
 
 class EditTableViewController: UITableViewController {
     var senmots = [true,true,true]
+    var asensors: [AnalogS] = []
+    var enabledASensors: [AnalogS] = []
+    var delegate = SensorTableViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
@@ -36,9 +39,14 @@ class EditTableViewController: UITableViewController {
         return 1
     }
 
+    @IBAction func save(sender: AnyObject) {
+        delegate.enabledASensors = self.enabledASensors
+        delegate.asensors = self.asensors
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return senmots.count
+        return enabledASensors.count
     }
 
     @IBAction func cancel(sender: UIBarButtonItem) {
@@ -47,14 +55,16 @@ class EditTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath)
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath) as! EditTableViewCell
+        cell.nameLabel.text = enabledASensors[indexPath.row].Name
         // Configure the cell...
 
         return cell
     }
     
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -75,20 +85,20 @@ class EditTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
     }
-    */
+    
 
-    /*
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+    
 
     /*
     // MARK: - Navigation
