@@ -27,6 +27,7 @@
 		C1CB0F871BC08087000FA9A1 /* MissionControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F861BC08087000FA9A1 /* MissionControlUITests.swift */; };
 		C1CB0F971BC082E6000FA9A1 /* MotorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */; };
 		C1CB0F991BC0857F000FA9A1 /* MotorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */; };
+		C1F61F541C19615B00C9FD5E /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F61F531C19615B00C9FD5E /* EditTableViewCell.swift */; };
 		C1FB94981BC4012E00601E6D /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FB94971BC4012E00601E6D /* ConnectViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		C1CB0F881BC08087000FA9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewController.swift; sourceTree = "<group>"; };
 		C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTableViewCell.swift; sourceTree = "<group>"; };
+		C1F61F531C19615B00C9FD5E /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		C1FB94971BC4012E00601E6D /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		F1FBA41C4CB86F2998E4D804 /* Pods-MissionControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControl/Pods-MissionControl.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 				C1AD385D1C0C8DCB00F573DE /* Servo.swift */,
 				C1AD385F1C0C8DF400F573DE /* AnalogS.swift */,
 				C1AD38611C0C932200F573DE /* DigitalS.swift */,
+				C1F61F531C19615B00C9FD5E /* EditTableViewCell.swift */,
 			);
 			path = MissionControl;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				C1AD385C1C0C8DB500F573DE /* Motor.swift in Sources */,
 				C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */,
 				C163AAC11BDED9090009A022 /* ytcpsocket.c in Sources */,
+				C1F61F541C19615B00C9FD5E /* EditTableViewCell.swift in Sources */,
 				C1AD38601C0C8DF400F573DE /* AnalogS.swift in Sources */,
 				C1AD38621C0C932200F573DE /* DigitalS.swift in Sources */,
 				C163AAC41BDED9F30009A022 /* TabViewController.swift in Sources */,

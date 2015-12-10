@@ -24,6 +24,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var updateRate = 20
     var visible = 40
     var sensor: AnalogS = AnalogS(JSONDecoder(""));
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -189,10 +190,12 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         print("lol")
     }
+    
     func chartValueNothingSelected(chartView: ChartViewBase) {
         print("not so lol")
     }
 }
+
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")

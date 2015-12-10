@@ -10,6 +10,11 @@ import UIKit
 
 class SensorTableViewController: UITableViewController {
     var sensors = [false,false,false,false,false,false,false,false,false,false,false,false]
+    var enabledASensors: [AnalogS] = [] {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     var asensors: [AnalogS] = []
     var client:TCPClient = TCPClient()
     override func viewDidLoad() {
@@ -43,13 +48,13 @@ class SensorTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return asensors.count
+        return enabledASensors.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
-        cell.configWithSensor(asensors[indexPath.row])
+        cell.configWithSensor(enabledASensors[indexPath.row])
         return cell
     }
     
@@ -112,6 +117,16 @@ class SensorTableViewController: UITableViewController {
     @IBAction func disconnect(sender: UIBarButtonItem) {
         client.close()
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "edit" {
+            let destination = segue.destinationViewController as! UINavigationController
+            let controller = destination.visibleViewController as! EditTableViewController
+            controller.asensors = self.asensors
+            controller.enabledASensors = self.enabledASensors
+            controller.delegate = self
+        }
     }
    
     /*
