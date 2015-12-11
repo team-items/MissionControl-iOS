@@ -42,11 +42,12 @@ class EditTableViewController: UITableViewController {
     @IBAction func save(sender: AnyObject) {
         delegate.enabledASensors = self.enabledASensors
         delegate.asensors = self.asensors
+        delegate.tableView.reloadData()
         dismissViewControllerAnimated(true, completion: nil)
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return enabledASensors.count
+        return asensors.count
     }
 
     @IBAction func cancel(sender: UIBarButtonItem) {
@@ -56,15 +57,54 @@ class EditTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath) as! EditTableViewCell
-        cell.nameLabel.text = enabledASensors[indexPath.row].Name
-        // Configure the cell...
-
+        cell.nameLabel.text = asensors[indexPath.row].Name
+        if asensors[indexPath.row].enabled{
+            cell.switcher.setOn(true, animated: false)
+        }else{
+            cell.switcher.setOn(false, animated: false)
+        }
         return cell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath) as! EditTableViewCell
+        
+        var i = 0;
+        var found = false;
+        for (var ind = 0; ind < enabledASensors.count; ind++){
+            print(enabledASensors[ind].Name)
+            print(cell.sensor.Name)
+            if asensors[indexPath.row].Name == enabledASensors[ind].Name{
+                i = ind
+                found = true
+                enabledASensors[ind].enabled = false
+                print("sensorfound")
+                enabledASensors.removeAtIndex(i)
+            }
+        }
+        if !found{
+            asensors[indexPath.row].enabled = true
+            enabledASensors.append(asensors[indexPath.row])
+        }
+        for sensor in asensors{
+            print(sensor.Name)
+        }
+        print("\n")
+        for sensor in enabledASensors{
+            print(sensor.Name)
+        }
+        if asensors[indexPath.row].enabled{
+            cell.switcher.setOn(true, animated: true)
+        }else{
+            cell.switcher.setOn(false, animated: true)
+        }
+        tableView.reloadData()
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

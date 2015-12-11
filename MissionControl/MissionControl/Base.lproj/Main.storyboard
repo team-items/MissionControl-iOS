@@ -161,6 +161,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="nameLabel" destination="Z3l-Fv-plA" id="HxZ-K8-vDA"/>
+                                    <outlet property="switcher" destination="B55-Mp-iTv" id="8dF-kL-6Vf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
