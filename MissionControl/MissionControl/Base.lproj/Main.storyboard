@@ -213,7 +213,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="284" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sj-Zs-Vrv">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="284" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sj-Zs-Vrv">
                                             <rect key="frame" x="550" y="8" width="42" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -296,6 +296,7 @@
                                     <outlet property="graph" destination="bJp-Ew-3LR" id="7kS-kq-98r"/>
                                     <outlet property="pauseButton" destination="2xF-3D-HyG" id="v6f-uE-PeK"/>
                                     <outlet property="sensorLabel" destination="JnX-wX-Lfx" id="quq-jP-aY9"/>
+                                    <outlet property="valueLabel" destination="2Sj-Zs-Vrv" id="egI-av-Eq0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

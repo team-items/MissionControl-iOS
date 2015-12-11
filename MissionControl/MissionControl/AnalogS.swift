@@ -16,7 +16,7 @@ class AnalogS : JSONJoy {
     var DataType:String
     var MinBound:NSNumber
     var Name:String
-    var oldValues = [Double]()
+    var oldValues = [1.0]
     var enabled = true
     required init(_ json:JSONDecoder) {
         if let value = json["MaxBound"].number {

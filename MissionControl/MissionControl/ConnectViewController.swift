@@ -135,18 +135,22 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         let (_, errorMsg) = client.connect(timeout: 10)
         if(errorMsg == "connect success"){
             client.send(str: connREQ)
-            var data = client.read(segmentSize*10)
+            var data = client.read(segmentSize)
             var jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
             print(jsonString)
                         var response = JSON(data: jsonString.dataUsingEncoding(NSUTF8StringEncoding)!)
             print(response)
             if let _ = response["ConnACK"].dictionary {
                 
-                data = client.read(segmentSize*10)
+                data = client.read(segmentSize)
                 var jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
                 
                 print(jsonString)
-                data = client.read(segmentSize*10)
+                data = client.read(segmentSize)
+                jsonString = jsonString.stringByAppendingString( NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)! as String)
+                
+                print(jsonString)
+                data = client.read(segmentSize)
                 jsonString = jsonString.stringByAppendingString( NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)! as String)
                 
                 print(jsonString)

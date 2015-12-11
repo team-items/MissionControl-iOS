@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 class SensorTableViewController: UITableViewController {
     var sensors = [false,false,false,false,false,false,false,false,false,false,false,false]
     var enabledASensors: [AnalogS] = [] {
@@ -26,7 +26,7 @@ class SensorTableViewController: UITableViewController {
         UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
 
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "test", userInfo: nil, repeats: true)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -91,6 +91,7 @@ class SensorTableViewController: UITableViewController {
            cell.graph.alpha = 0
         }
         
+        print("lol")
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
         print(cell.ispaused)
         if cell.ispaused{
@@ -102,7 +103,22 @@ class SensorTableViewController: UITableViewController {
         tableView.endUpdates()
 
     }
-    
+    func test(){
+        var data = client.read(2048)
+        var jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
+        print(jsonString)
+        let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        var dat = JSON(data : dataFromString!)
+        for (sensorname, value) in dat["Data"].dictionaryValue{
+            for (var ind = 0; ind < enabledASensors.count; ind++){
+                if sensorname == enabledASensors[ind].Name{
+                    enabledASensors[ind].oldValues.append(value.doubleValue)
+                    tableView.reloadData()
+                }
+            }
+
+        }
+    }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
             if sensors[indexPath.row]{
             return 209
