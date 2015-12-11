@@ -10,14 +10,18 @@ import UIKit
 
 class EditTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var nameLabel: UILabel!
+    var sensor: AnalogS = AnalogS()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    func conwithsensor(sensor:AnalogS){
+        self.sensor = sensor
+     }
     override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        super.setSelected(false, animated: animated)
 
         // Configure the view for the selected state
     }

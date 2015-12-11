@@ -41,5 +41,13 @@ class AnalogS : JSONJoy {
         }
         Name = "";
     }
+    init() {
+        
+            MaxBound = 0
+            Graph = 40
+            DataType = ""
+            MinBound = 0
+        Name = "";
+    }
     
 }

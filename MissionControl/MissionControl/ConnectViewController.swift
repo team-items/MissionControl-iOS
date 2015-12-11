@@ -176,6 +176,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 
             }
             destination.enabledASensors = sensors
+            destination.asensors = sensors
             destination.client = client
         }
         
