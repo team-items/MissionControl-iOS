@@ -12,6 +12,7 @@ import JSONJoy
 class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var arrayOfValues = [ChartDataSet]()
     
+    @IBOutlet weak var valueLabel: UILabel!
     var ispaused = false
     var expanded = false
     var timer = NSTimer()
@@ -81,7 +82,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         rightAxis.axisMaximum = sensor.MaxBound.doubleValue
         rightAxis.axisMinimum = sensor.MinBound.doubleValue
         rightAxis.axisRange = sensor.MaxBound.doubleValue - sensor.MinBound.doubleValue
-      
+        valueLabel.text = String(sensor.oldValues.last!)
     }
     
     
