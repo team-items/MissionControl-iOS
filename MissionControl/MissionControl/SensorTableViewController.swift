@@ -28,7 +28,7 @@ class SensorTableViewController: UITableViewController {
         
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
         var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "test", userInfo: nil, repeats: true)
-        
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
