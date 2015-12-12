@@ -82,7 +82,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         rightAxis.axisMaximum = sensor.MaxBound.doubleValue
         rightAxis.axisMinimum = sensor.MinBound.doubleValue
         rightAxis.axisRange = sensor.MaxBound.doubleValue - sensor.MinBound.doubleValue
-        valueLabel.text = String(sensor.oldValues.last!)
+       
     }
     
     
