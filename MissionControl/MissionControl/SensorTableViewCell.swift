@@ -64,8 +64,8 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
        graph.marker = marker
 
         graph.notifyDataSetChanged();
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        //timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
+       // NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
     }
     
@@ -154,10 +154,10 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         }
     }
     
-    func update(){
+    func update(value: Double){
         if (!ispaused){
             var mult: UInt32 = (UInt32(1024) + 1)
-            var val: Double = Double((arc4random_uniform(mult)) + 3)
+            var val: Double = value
             
             var data = graph.data!
             var set = data.getDataSetByIndex(0);
