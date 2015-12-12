@@ -116,6 +116,7 @@ class SensorTableViewController: UITableViewController {
                 if sensorname == enabledASensors[ind].Name{
                     enabledASensors[ind].oldValues.append(value.doubleValue)
                     cells[ind].valueLabel.text = String(value.doubleValue)
+                    cells[ind].update(value.doubleValue)
                 }
             }
         }
