@@ -18,6 +18,7 @@ class SensorTableViewController: UITableViewController {
     }
     var asensors: [AnalogS] = []
     var client:TCPClient = TCPClient()
+    var timer = NSTimer();
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -27,7 +28,7 @@ class SensorTableViewController: UITableViewController {
         UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
         
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "test", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "test", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -57,7 +58,12 @@ class SensorTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
         cell.configWithSensor(enabledASensors[indexPath.row])
-        cells.append(cell)
+        if cells.count > indexPath.row{
+            cells[indexPath.row] = cell
+        }
+        else{
+            cells.append(cell)
+        }
         return cell
     }
     
@@ -134,6 +140,7 @@ class SensorTableViewController: UITableViewController {
     
     
     @IBAction func disconnect(sender: UIBarButtonItem) {
+        timer.invalidate()
         client.close()
         dismissViewControllerAnimated(true, completion: nil)
     }
