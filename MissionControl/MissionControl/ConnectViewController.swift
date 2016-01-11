@@ -171,7 +171,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let senContr = segue.destinationViewController as! TabViewController
             let controller = senContr.viewControllers![0] as! UINavigationController
             let destination = controller.visibleViewController as! SensorTableViewController
-            var sensors: [AnalogS] = [];
+            var sensors: [Sensor] = [];
             //do conlao here
             for (sensorname,sensor)  in conLAO["ConnLAO"]["Information"]["Integer"].dictionaryValue{
                 var asensor:AnalogS = AnalogS(JSONDecoder(sensor.stringValue))
@@ -179,8 +179,14 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 sensors.append(asensor)
                 
             }
-            destination.enabledASensors = sensors
-            destination.asensors = sensors
+            for (sensorname,sensor)  in conLAO["ConnLAO"]["Information"]["Bool"].dictionaryValue{
+                var dsensor:DigitalS = DigitalS(JSONDecoder(sensor.stringValue))
+                dsensor.Name = sensorname
+                sensors.append(dsensor)
+                
+            }
+            destination.enabledSensors = sensors
+            destination.sensors = sensors
             destination.client = client
         }
         

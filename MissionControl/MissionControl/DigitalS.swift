@@ -8,19 +8,15 @@
 
 import Foundation
 import JSONJoy
-class DigitalS {
-    var DataType:String
+class DigitalS: Sensor {
+    var oldValues = [0]
     var Graph:NSNumber
-    init(json:JSONDecoder) {
-        if let value = json["DataType"].string {
-            DataType = value
-        } else {
-            DataType = ""
-        }
+    required init(_ json:JSONDecoder) {
         if let value = json["Graph"].number {
             Graph = value
         } else {
-            Graph = 0
+            Graph = 40
         }
+        super.init(json)
     }
 }

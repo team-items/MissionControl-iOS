@@ -1,8 +1,8 @@
 //
-//  SensorTableViewCell.swift
+//  DigitalSensorTableViewCell.swift
 //  MissionControl
 //
-//  Created by Daniel Honies on 04.10.15.
+//  Created by Daniel Honies on 11.1.15.
 //  Copyright © 2015 Daniel Honies. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import JSONJoy
 import SwiftyJSON
-class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
+class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var arrayOfValues = [ChartDataSet]()
     
     @IBOutlet weak var valueLabel: UILabel!
@@ -25,13 +25,13 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var points = 40
     var updateRate = 20
     var visible = 40
-    var sensor: AnalogS = AnalogS(JSONDecoder(""));
+    var sensor: DigitalS = DigitalS(JSONDecoder(""));
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         if ispaused{
-        pauseButton.setTitle("Resume", forState: UIControlState.Normal)
+            pauseButton.setTitle("Resume", forState: UIControlState.Normal)
         }
         
         graph.delegate = self
@@ -52,7 +52,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         axis.drawGridLinesEnabled = false
         axis.drawAxisLineEnabled = false
         axis.spaceTop = 0
-         var axis2 = graph.getAxis(ChartYAxis.AxisDependency.Right)
+        var axis2 = graph.getAxis(ChartYAxis.AxisDependency.Right)
         axis2.drawGridLinesEnabled = true
         axis2.drawAxisLineEnabled = false
         axis2.spaceTop = 0
@@ -62,28 +62,28 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         var marker: ChartMarker = ChartMarker(color: UIColor(netHex: 0xf43254), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         
         marker.minimumSize = CGSizeMake(80, 40)
-       graph.marker = marker
-
+        graph.marker = marker
+        
         graph.notifyDataSetChanged();
         //timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
-       // NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        // NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
     }
     
-    func configWithSensor(s:AnalogS){
+    func configWithSensor(s:DigitalS){
         sensor = s;
         self.sensorLabel.text = sensor.Name
         self.visible = sensor.Graph.integerValue
-        setDataCount(visible, range: sensor.MaxBound.doubleValue - sensor.MinBound.doubleValue)
+        setDataCount(visible, range: 1)
         var leftAxis: ChartYAxis = graph.getAxis(ChartYAxis.AxisDependency.Left)
         var rightAxis:ChartYAxis = graph.getAxis(ChartYAxis.AxisDependency.Right)
-        leftAxis.axisMaximum = sensor.MaxBound.doubleValue
-        leftAxis.axisMinimum = sensor.MinBound.doubleValue
-        leftAxis.axisRange = sensor.MaxBound.doubleValue - sensor.MinBound.doubleValue
-        rightAxis.axisMaximum = sensor.MaxBound.doubleValue
-        rightAxis.axisMinimum = sensor.MinBound.doubleValue
-        rightAxis.axisRange = sensor.MaxBound.doubleValue - sensor.MinBound.doubleValue
-       
+        leftAxis.axisMaximum = 1
+        leftAxis.axisMinimum = 0
+        leftAxis.axisRange = 1
+        rightAxis.axisMaximum = 1
+        rightAxis.axisMinimum = 0
+        rightAxis.axisRange = 1
+        
     }
     
     
@@ -95,7 +95,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         var yVals: [ChartDataEntry] = [ChartDataEntry]()
         for var i = 0; i < count; i++ {
             var mult: UInt32 = (UInt32(range) + 1)
-            var val: Double = Double((arc4random_uniform(mult)) + 3)
+            var val: Double = Double(0)
             yVals.append(ChartDataEntry(value: val, xIndex: i))
         }
         set1 = LineChartDataSet(yVals: yVals, label: "DataSet 1")
@@ -121,12 +121,12 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
             var data = graph.data!
             var set = data.getDataSetByIndex(0);
             for entry in set.yVals {
-                sensor.oldValues.append(entry.value)
+                sensor.oldValues.append(Int(entry.value))
                 set.removeEntry(entry)
             }
             for  (var i = 0; i < sensor.oldValues.count; i++){
                 data.addXValue("")
-                data.addEntry(ChartDataEntry(value: sensor.oldValues[i], xIndex: i), dataSetIndex: 0)
+                data.addEntry(ChartDataEntry(value: Double(sensor.oldValues[i]), xIndex: i), dataSetIndex: 0)
             }
             graph.notifyDataSetChanged()
             graph.setVisibleXRangeMaximum(CGFloat(visible));
@@ -144,7 +144,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
             for entry in set.yVals{
                 graph.data!.removeXValue(0)
                 graph.data!.getDataSetByIndex(0).removeEntry(entry)
-               
+                
             }
             for (var index = 0; index < visible; index++){
                 set.addEntry(ChartDataEntry(value: Double(vals[index].value), xIndex: index))
@@ -157,17 +157,19 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     
     func update(value: JSON){
         if (!ispaused){
-            
-            valueLabel.text = String(value.doubleValue)
+            valueLabel.text = value.stringValue
             var mult: UInt32 = (UInt32(1024) + 1)
-            var val: Double = value.doubleValue
+            var val: Double = 0
+            if(value.boolValue){
+                val = 1
+            }
             
             var data = graph.data!
             var set = data.getDataSetByIndex(0);
             data.addXValue("")
             data.removeXValue(0)
             if var x = set.entryForXIndex(0){
-            sensor.oldValues.append(set.entryForXIndex(0)!.value)
+                sensor.oldValues.append(Int(set.entryForXIndex(0)!.value))
             }
             set.removeEntry(xIndex: 0)
             data.addEntry(ChartDataEntry(value: val, xIndex: set.entryCount + 1),dataSetIndex: 0)
@@ -180,14 +182,14 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
             
             // move to the latest entry
             graph.moveViewToX(0);
-        
+            
         }
         
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: false)
-
+        
         // Configure the view for the selected state
     }
     
@@ -200,17 +202,3 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     }
 }
 
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
-    }
-    
-}

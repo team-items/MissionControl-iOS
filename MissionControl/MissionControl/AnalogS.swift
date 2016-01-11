@@ -10,15 +10,16 @@
 import Foundation
 import JSONJoy
 
-class AnalogS : JSONJoy {
+class AnalogS : Sensor {
     var MaxBound:NSNumber
     var Graph:NSNumber
-    var DataType:String
+    
     var MinBound:NSNumber
-    var Name:String
+    
     var oldValues = [1.0]
-    var enabled = true
+    
     required init(_ json:JSONDecoder) {
+        
         if let value = json["MaxBound"].number {
             MaxBound = value
         } else {
@@ -29,25 +30,19 @@ class AnalogS : JSONJoy {
         } else {
             Graph = 40
         }
-        if let value = json["DataType"].string {
-            DataType = value
-        } else {
-            DataType = ""
-        }
         if let value = json["MinBound"].number {
             MinBound = value
         } else {
             MinBound = 0
         }
-        Name = "";
+        super.init(json)
     }
-    init() {
+    override init() {
         
             MaxBound = 0
             Graph = 40
-            DataType = ""
             MinBound = 0
-        Name = "";
+        super.init();
     }
     
 }
