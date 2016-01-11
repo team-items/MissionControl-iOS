@@ -9,14 +9,14 @@
 import UIKit
 import SwiftyJSON
 class SensorTableViewController: UITableViewController {
-    var sensors = [false,false,false,false,false,false,false,false,false,false,false,false]
-    var cells = [SensorTableViewCell]()
-    var enabledASensors: [AnalogS] = [] {
+    var sensorsexpanded = [false,false,false,false,false,false,false,false,false,false,false,false, false,false,false,false, false,false,false,false, false,false,false,false]
+    var cells = [UITableViewCell]()
+    var enabledSensors: [Sensor] = [] {
         didSet{
             tableView.reloadData()
         }
     }
-    var asensors: [AnalogS] = []
+    var sensors: [Sensor] = []
     var client:TCPClient = TCPClient()
     var timer = NSTimer();
     override func viewDidLoad() {
@@ -51,13 +51,23 @@ class SensorTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return enabledASensors.count
+        return enabledSensors.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
-        cell.configWithSensor(enabledASensors[indexPath.row])
+        var cell = UITableViewCell();
+        if let asensor = enabledSensors[indexPath.row] as? AnalogS {
+         let cell1 = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
+        
+        cell1.configWithSensor(asensor)
+            cell = cell1
+        }else if let dsensor = enabledSensors[indexPath.row] as? DigitalS {
+            let cell2 = tableView.dequeueReusableCellWithIdentifier("dsensorcell", forIndexPath: indexPath) as! DigitalSensorTableViewCell
+            
+            cell2.configWithSensor(dsensor)
+            cell = cell2
+        }
         if cells.count > indexPath.row{
             cells[indexPath.row] = cell
         }
@@ -82,7 +92,7 @@ class SensorTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            sensors.removeFirst()
+            sensorsexpanded.removeFirst()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -93,7 +103,7 @@ class SensorTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
-        if !sensors[indexPath.row]{
+        if !sensorsexpanded[indexPath.row]{
             cell.graph.alpha = 1
         }
         else{
@@ -106,7 +116,7 @@ class SensorTableViewController: UITableViewController {
         if cell.ispaused{
         cell.pauseButton.setTitle("Resume", forState: UIControlState.Normal)
         }
-        sensors[indexPath.row] = !sensors[indexPath.row]
+        sensorsexpanded[indexPath.row] = !sensorsexpanded[indexPath.row]
         
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -118,18 +128,33 @@ class SensorTableViewController: UITableViewController {
         let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         var dat = JSON(data : dataFromString!)
         for (sensorname, value) in dat["Data"].dictionaryValue{
-            for (var ind = 0; ind < enabledASensors.count; ind++){
-                if sensorname == enabledASensors[ind].Name{
-                    enabledASensors[ind].oldValues.append(value.doubleValue)
-                    cells[ind].valueLabel.text = String(value.doubleValue)
-                    cells[ind].update(value.doubleValue)
+            for (var ind = 0; ind < enabledSensors.count; ind++){
+                if sensorname == enabledSensors[ind].Name{
+                    if ind < cells.count{
+                        if let asensor = enabledSensors[ind] as? AnalogS {
+                            asensor.oldValues.append(value.doubleValue)
+                            let cell = cells[ind] as! SensorTableViewCell
+                            cell.update(value)
+                        }
+                        if let dsensor = enabledSensors[ind] as? DigitalS {
+                            print(cells.count)
+                            print(enabledSensors.count)
+                            let cell = cells[ind] as! DigitalSensorTableViewCell
+                            if(value.boolValue){
+                                dsensor.oldValues.append(1)
+                            }else{
+                                dsensor.oldValues.append(0)
+                            }
+                            cell.update(value)
+                        }
+                    }
                 }
             }
         }
         
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-            if sensors[indexPath.row]{
+            if sensorsexpanded[indexPath.row]{
             return 209
         }
         else{
@@ -149,8 +174,8 @@ class SensorTableViewController: UITableViewController {
         if segue.identifier == "edit" {
             let destination = segue.destinationViewController as! UINavigationController
             let controller = destination.visibleViewController as! EditTableViewController
-            controller.asensors = self.asensors
-            controller.enabledASensors = self.enabledASensors
+            controller.sensors = self.sensors
+            controller.enabledSensors = self.enabledSensors
             controller.delegate = self
         }
     }

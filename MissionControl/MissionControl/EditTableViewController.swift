@@ -10,8 +10,8 @@ import UIKit
 
 class EditTableViewController: UITableViewController {
     var senmots = [true,true,true]
-    var asensors: [AnalogS] = []
-    var enabledASensors: [AnalogS] = []
+    var sensors: [Sensor] = []
+    var enabledSensors: [Sensor] = []
     var delegate = SensorTableViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +40,14 @@ class EditTableViewController: UITableViewController {
     }
 
     @IBAction func save(sender: AnyObject) {
-        delegate.enabledASensors = self.enabledASensors
-        delegate.asensors = self.asensors
+        delegate.enabledSensors = self.enabledSensors
+        delegate.sensors = self.sensors
         delegate.tableView.reloadData()
         dismissViewControllerAnimated(true, completion: nil)
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return asensors.count
+        return sensors.count
     }
 
     @IBAction func cancel(sender: UIBarButtonItem) {
@@ -57,8 +57,8 @@ class EditTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath) as! EditTableViewCell
-        cell.nameLabel.text = asensors[indexPath.row].Name
-        if asensors[indexPath.row].enabled{
+        cell.nameLabel.text = sensors[indexPath.row].Name
+        if sensors[indexPath.row].enabled{
             cell.switcher.setOn(true, animated: false)
         }else{
             cell.switcher.setOn(false, animated: false)
@@ -75,29 +75,29 @@ class EditTableViewController: UITableViewController {
         
         var i = 0;
         var found = false;
-        for (var ind = 0; ind < enabledASensors.count; ind++){
-            print(enabledASensors[ind].Name)
+        for (var ind = 0; ind < enabledSensors.count; ind++){
+            print(enabledSensors[ind].Name)
             print(cell.sensor.Name)
-            if asensors[indexPath.row].Name == enabledASensors[ind].Name{
+            if sensors[indexPath.row].Name == enabledSensors[ind].Name{
                 i = ind
                 found = true
-                enabledASensors[ind].enabled = false
+                enabledSensors[ind].enabled = false
                 print("sensorfound")
-                enabledASensors.removeAtIndex(i)
+                enabledSensors.removeAtIndex(i)
             }
         }
         if !found{
-            asensors[indexPath.row].enabled = true
-            enabledASensors.append(asensors[indexPath.row])
+            sensors[indexPath.row].enabled = true
+            enabledSensors.append(sensors[indexPath.row])
         }
-        for sensor in asensors{
+        for sensor in sensors{
             print(sensor.Name)
         }
         print("\n")
-        for sensor in enabledASensors{
+        for sensor in enabledSensors{
             print(sensor.Name)
         }
-        if asensors[indexPath.row].enabled{
+        if sensors[indexPath.row].enabled{
             cell.switcher.setOn(true, animated: true)
         }else{
             cell.switcher.setOn(false, animated: true)
