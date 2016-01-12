@@ -172,6 +172,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let controller = senContr.viewControllers![0] as! UINavigationController
             let destination = controller.visibleViewController as! SensorTableViewController
             var sensors: [Sensor] = [];
+            var motors: [MotorServo] = [];
             //do conlao here
             for (sensorname,sensor)  in conLAO["ConnLAO"]["Information"]["Integer"].dictionaryValue{
                 var asensor:AnalogS = AnalogS(JSONDecoder(sensor.stringValue))
@@ -185,8 +186,30 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 sensors.append(dsensor)
                 
             }
+            var motorS = MotorServo();
+            var slname = ""
+            var buttonname = ""
+            for (motorname, motor)  in conLAO["ConnLAO"]["Controller"].dictionaryValue{
+                for (slidername, slider)  in motor{
+                    if (slider["ControlType"] == "Slider"){
+                        motorS = MotorServo(JSONDecoder(slider.stringValue))
+                        motorS.Name = motorname
+                        slname = slidername
+                    }else if (slider["ControlType"] == "Button"){
+                        buttonname = slidername
+                        
+                    }
+                }
+                
+                motorS.SliderName = slname
+                motorS.ButtonName = buttonname
+                motors.append(motorS)
+            }
+            
             destination.enabledSensors = sensors
             destination.sensors = sensors
+            destination.enabledMotorServos = motors;
+            destination.motors = motors
             destination.client = client
         }
         

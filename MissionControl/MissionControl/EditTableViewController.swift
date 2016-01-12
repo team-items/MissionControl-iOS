@@ -12,7 +12,7 @@ class EditTableViewController: UITableViewController {
     var senmots = [true,true,true]
     var sensors: [Sensor] = []
     var enabledSensors: [Sensor] = []
-    var delegate = SensorTableViewController()
+    var delegate = UITableViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
@@ -40,9 +40,15 @@ class EditTableViewController: UITableViewController {
     }
 
     @IBAction func save(sender: AnyObject) {
-        delegate.enabledSensors = self.enabledSensors
-        delegate.sensors = self.sensors
-        delegate.tableView.reloadData()
+        if let delegat = delegate as? SensorTableViewController{
+            delegat.enabledSensors = self.enabledSensors
+            delegat.sensors = self.sensors
+            delegat.tableView.reloadData()
+        }else if let deleg = delegate as? MotorTableViewController{
+            deleg.enabledMotorServos = self.enabledSensors as! [MotorServo]
+            deleg.motorServos = self.sensors as! [MotorServo]
+            deleg.tableView.reloadData()
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

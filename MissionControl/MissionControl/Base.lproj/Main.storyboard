@@ -90,6 +90,12 @@
                                         <constraint firstItem="vCa-9g-nsS" firstAttribute="leading" secondItem="unu-V1-hwE" secondAttribute="leading" id="xZw-mi-QCL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="ngJ-B1-8Hb" id="aEO-UV-n2y"/>
+                                    <outlet property="nameLabel" destination="vCa-9g-nsS" id="Ryk-rc-yDD"/>
+                                    <outlet property="slider" destination="unu-V1-hwE" id="Yji-c8-pDD"/>
+                                    <outlet property="valueLabel" destination="Afc-pU-FxO" id="eo6-Iz-JZ1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -108,7 +114,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="A5X-OJ-fdn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="fxI-QS-7fe" kind="presentation" id="fwr-r4-lzA"/>
+                                <segue destination="fxI-QS-7fe" kind="presentation" identifier="editm" id="fwr-r4-lzA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -565,6 +571,6 @@
         <image name="sensor" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Bh-Lf-bKo"/>
+        <segue reference="fwr-r4-lzA"/>
     </inferredMetricsTieBreakers>
 </document>
