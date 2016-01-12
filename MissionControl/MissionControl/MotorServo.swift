@@ -1,6 +1,5 @@
-
 //
-//  AnalogS.swift
+//  Motor.swift
 //  MissionControl
 //
 //  Created by Daniel Honies on 30.11.15.
@@ -8,45 +7,40 @@
 //
 
 import Foundation
+import Foundation
 import JSONJoy
-
-class AnalogS : Sensor {
+class MotorServo: Sensor {
     var MaxBound:NSNumber
-    var Graph:NSNumber
-    
     var MinBound:NSNumber
-    
-    var oldValues = [1.0]
-    var DataType:String
+    var ControlType:String
+    var SliderName: String
+    var ButtonName: String
     required init(_ json:JSONDecoder) {
-        if let value = json["DataType"].string {
-            DataType = value
+        if let value = json["ControlType"].string {
+            ControlType = value
         } else {
-            DataType = ""
+            ControlType = ""
         }
         if let value = json["MaxBound"].number {
             MaxBound = value
         } else {
             MaxBound = 0
         }
-        if let value = json["Graph"].number {
-            Graph = value
-        } else {
-            Graph = 40
-        }
         if let value = json["MinBound"].number {
             MinBound = value
         } else {
             MinBound = 0
         }
+        ButtonName = ""
+        SliderName = ""
         super.init(json)
     }
     override init() {
-            DataType = ""
-            MaxBound = 0
-            Graph = 40
-            MinBound = 0
+        ControlType = ""
+        MaxBound = 0
+        MinBound = 0
+        ButtonName = ""
+        SliderName = ""
         super.init();
     }
-    
 }

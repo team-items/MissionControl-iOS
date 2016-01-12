@@ -17,8 +17,7 @@
 		C1722BF41C444761000262D7 /* DigitalSensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1722BF31C444761000262D7 /* DigitalSensorTableViewCell.swift */; };
 		C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */; };
 		C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */; };
-		C1AD385C1C0C8DB500F573DE /* Motor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD385B1C0C8DB500F573DE /* Motor.swift */; };
-		C1AD385E1C0C8DCB00F573DE /* Servo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD385D1C0C8DCB00F573DE /* Servo.swift */; };
+		C1AD385C1C0C8DB500F573DE /* MotorServo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD385B1C0C8DB500F573DE /* MotorServo.swift */; };
 		C1AD38601C0C8DF400F573DE /* AnalogS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD385F1C0C8DF400F573DE /* AnalogS.swift */; };
 		C1AD38621C0C932200F573DE /* DigitalS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD38611C0C932200F573DE /* DigitalS.swift */; };
 		C1CB0F651BC08087000FA9A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB0F641BC08087000FA9A1 /* AppDelegate.swift */; };
@@ -63,8 +62,7 @@
 		C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
 		C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
-		C1AD385B1C0C8DB500F573DE /* Motor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
-		C1AD385D1C0C8DCB00F573DE /* Servo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Servo.swift; sourceTree = "<group>"; };
+		C1AD385B1C0C8DB500F573DE /* MotorServo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorServo.swift; sourceTree = "<group>"; };
 		C1AD385F1C0C8DF400F573DE /* AnalogS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogS.swift; sourceTree = "<group>"; };
 		C1AD38611C0C932200F573DE /* DigitalS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalS.swift; sourceTree = "<group>"; };
 		C1CB0F611BC08087000FA9A1 /* MissionControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MissionControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,19 +148,18 @@
 				C1CB0F6D1BC08087000FA9A1 /* Assets.xcassets */,
 				C1CB0F6F1BC08087000FA9A1 /* LaunchScreen.storyboard */,
 				C1CB0F721BC08087000FA9A1 /* Info.plist */,
-				C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */,
 				C163AABF1BDED9090009A022 /* ytcpsocket.c */,
 				C163AAC01BDED9090009A022 /* ytcpsocket.swift */,
 				C1CB0F981BC0857F000FA9A1 /* MotorTableViewCell.swift */,
+				C1CB0F961BC082E6000FA9A1 /* MotorTableViewController.swift */,
 				C1A5FFCF1BC13E1C00E368B9 /* SensorTableViewController.swift */,
+				C1FB94971BC4012E00601E6D /* ConnectViewController.swift */,
 				C1A5FFE81BC1461300E368B9 /* Bridging-Header.h */,
 				C1A5FFEB1BC147C600E368B9 /* SensorTableViewCell.swift */,
 				C122FAC21BC3E8DE001AD82C /* EditTableViewController.swift */,
-				C1FB94971BC4012E00601E6D /* ConnectViewController.swift */,
 				C163AAC31BDED9F30009A022 /* TabViewController.swift */,
 				C163AAC51BDEDC650009A022 /* MissionChartMarker.swift */,
-				C1AD385B1C0C8DB500F573DE /* Motor.swift */,
-				C1AD385D1C0C8DCB00F573DE /* Servo.swift */,
+				C1AD385B1C0C8DB500F573DE /* MotorServo.swift */,
 				C1AD385F1C0C8DF400F573DE /* AnalogS.swift */,
 				C1AD38611C0C932200F573DE /* DigitalS.swift */,
 				C1F61F531C19615B00C9FD5E /* EditTableViewCell.swift */,
@@ -384,7 +381,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1AD385E1C0C8DCB00F573DE /* Servo.swift in Sources */,
 				C1722BF21C443D7B000262D7 /* Sensor.swift in Sources */,
 				C1722BF41C444761000262D7 /* DigitalSensorTableViewCell.swift in Sources */,
 				C1FB94981BC4012E00601E6D /* ConnectViewController.swift in Sources */,
@@ -394,7 +390,7 @@
 				C163AAC21BDED9090009A022 /* ytcpsocket.swift in Sources */,
 				C1A5FFEC1BC147C600E368B9 /* SensorTableViewCell.swift in Sources */,
 				C1CB0F991BC0857F000FA9A1 /* MotorTableViewCell.swift in Sources */,
-				C1AD385C1C0C8DB500F573DE /* Motor.swift in Sources */,
+				C1AD385C1C0C8DB500F573DE /* MotorServo.swift in Sources */,
 				C1A5FFD01BC13E1C00E368B9 /* SensorTableViewController.swift in Sources */,
 				C163AAC11BDED9090009A022 /* ytcpsocket.c in Sources */,
 				C1F61F541C19615B00C9FD5E /* EditTableViewCell.swift in Sources */,

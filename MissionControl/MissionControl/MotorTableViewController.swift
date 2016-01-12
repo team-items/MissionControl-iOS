@@ -8,17 +8,23 @@
 
 import UIKit
 
-class MotorTableViewController: UITableViewController {
-    var motors = [0,0,0]
-    
+class MotorTableViewController: UITableViewController, UITabBarControllerDelegate {
+    var enabledMotorServos: [MotorServo] = [] {
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    var motorServos: [MotorServo] = []
+    var client:TCPClient = TCPClient()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController!.delegate = self
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
         tabBarController!.tabBar.tintColor = UIColor(netHex: 0xf43254)
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
-
+        print(enabledMotorServos.count)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -41,13 +47,13 @@ class MotorTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return motors.count
+        return enabledMotorServos.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("motorcell", forIndexPath: indexPath)
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("motorcell", forIndexPath: indexPath) as! MotorTableViewCell
+        cell.configWithMotor(enabledMotorServos[indexPath.row])
         // Configure the cell...
 
         return cell
@@ -67,19 +73,35 @@ class MotorTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            motors.removeFirst()
+            enabledMotorServos.removeFirst()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editm" {
+            let destination = segue.destinationViewController as! UINavigationController
+            let controller = destination.visibleViewController as! EditTableViewController
+            controller.sensors = self.motorServos
+            controller.enabledSensors = self.enabledMotorServos
+            controller.delegate = self
+        }
+    }
     
     @IBAction func disc(sender: UIBarButtonItem) {
+        client.close()
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if let destination = viewController as? SensorTableViewController{
+            destination.enabledMotorServos = enabledMotorServos
+            destination.motors = motorServos
+        }
+        return true
+    }
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {

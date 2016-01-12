@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-class SensorTableViewController: UITableViewController {
+class SensorTableViewController: UITableViewController, UITabBarControllerDelegate {
     var sensorsexpanded = [false,false,false,false,false,false,false,false,false,false,false,false, false,false,false,false, false,false,false,false, false,false,false,false]
     var cells = [UITableViewCell]()
     var enabledSensors: [Sensor] = [] {
@@ -19,8 +19,13 @@ class SensorTableViewController: UITableViewController {
     var sensors: [Sensor] = []
     var client:TCPClient = TCPClient()
     var timer = NSTimer();
+    var enabledMotorServos: [MotorServo] = []
+    var motors: [MotorServo] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController!.delegate = self
+        
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
@@ -137,8 +142,6 @@ class SensorTableViewController: UITableViewController {
                             cell.update(value)
                         }
                         if let dsensor = enabledSensors[ind] as? DigitalS {
-                            print(cells.count)
-                            print(enabledSensors.count)
                             let cell = cells[ind] as! DigitalSensorTableViewCell
                             if(value.boolValue){
                                 dsensor.oldValues.append(1)
@@ -178,8 +181,20 @@ class SensorTableViewController: UITableViewController {
             controller.enabledSensors = self.enabledSensors
             controller.delegate = self
         }
+        
     }
    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+      
+        let dest = viewController as! UINavigationController
+        if let destination = dest.viewControllers[0] as? MotorTableViewController{
+            destination.enabledMotorServos = enabledMotorServos
+            
+            destination.motorServos = motors
+            destination.client = client
+        }
+        return true
+    }
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
