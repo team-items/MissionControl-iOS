@@ -175,6 +175,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             var motors: [MotorServo] = [];
             //do conlao here
             for (sensorname,sensor)  in conLAO["ConnLAO"]["Information"]["Integer"].dictionaryValue{
+                
                 var asensor:AnalogS = AnalogS(JSONDecoder(sensor.stringValue))
                 asensor.Name = sensorname
                 sensors.append(asensor)
@@ -190,10 +191,13 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             var slname = ""
             var buttonname = ""
             for (motorname, motor)  in conLAO["ConnLAO"]["Controller"].dictionaryValue{
-                for (slidername, slider)  in motor{
+                for (slidername, slider)  in motor.dictionaryValue{
                     if (slider["ControlType"] == "Slider"){
+                        print(slider.stringValue)
                         motorS = MotorServo(JSONDecoder(slider.stringValue))
                         motorS.Name = motorname
+                        motorS.MinBound = slider["MinBoud"].numberValue
+                        motorS.MaxBound = slider["MaxBound"].numberValue
                         slname = slidername
                     }else if (slider["ControlType"] == "Button"){
                         buttonname = slidername
