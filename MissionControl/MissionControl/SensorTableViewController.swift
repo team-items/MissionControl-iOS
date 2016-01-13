@@ -189,8 +189,8 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         let dest = viewController as! UINavigationController
         if let destination = dest.viewControllers[0] as? MotorTableViewController{
             destination.enabledMotorServos = enabledMotorServos
-            
             destination.motorServos = motors
+            destination.timer = timer
             destination.client = client
         }
         return true
