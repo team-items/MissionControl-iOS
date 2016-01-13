@@ -53,7 +53,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             print("\(error?.localizedDescription)")
             return
         }
-        /*
+        
         // Initialize the captureSession object.
         captureSession = AVCaptureSession()
         // Set the input device on the capture session.
@@ -78,7 +78,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         // Move the message label to the top view
         view.bringSubviewToFront(messageLabel)
-*/
+
     }
     
     override func didReceiveMemoryWarning() {
