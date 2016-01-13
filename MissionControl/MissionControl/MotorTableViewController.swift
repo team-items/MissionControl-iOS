@@ -25,7 +25,7 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
-        print(enabledMotorServos.count)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

@@ -196,7 +196,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         print(slider.stringValue)
                         motorS = MotorServo(JSONDecoder(slider.stringValue))
                         motorS.Name = motorname
-                        motorS.MinBound = slider["MinBoud"].numberValue
+                        motorS.MinBound = slider["MinBound"].numberValue
                         motorS.MaxBound = slider["MaxBound"].numberValue
                         slname = slidername
                     }else if (slider["ControlType"] == "Button"){
