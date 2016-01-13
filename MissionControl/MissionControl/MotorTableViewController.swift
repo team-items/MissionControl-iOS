@@ -16,6 +16,7 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
     }
     var motorServos: [MotorServo] = []
     var client:TCPClient = TCPClient()
+    var timer = NSTimer();
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController!.delegate = self
@@ -91,6 +92,7 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
     }
     
     @IBAction func disc(sender: UIBarButtonItem) {
+        timer.invalidate()
         client.close()
         dismissViewControllerAnimated(true, completion: nil)
     }
