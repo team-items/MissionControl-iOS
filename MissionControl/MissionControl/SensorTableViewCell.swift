@@ -8,7 +8,7 @@
 
 import UIKit
 import Charts
-
+import JSONJoy
 class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var arrayOfValues = [ChartDataSet]()
     var oldValues = [Double]()
@@ -23,6 +23,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
     var points = 40
     var updateRate = 20
     var visible = 40
+    var sensor: AnalogS = AnalogS(JSONDecoder(""));
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -63,6 +64,11 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "update", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
+    }
+    
+    func configWithSensor(s:AnalogS){
+        sensor = s;
+        self.sensorLabel.text = sensor.Name;
     }
     func setDataCount(count: Int, range: Double) {
         var xVals: [NSObject] =  [NSObject]()

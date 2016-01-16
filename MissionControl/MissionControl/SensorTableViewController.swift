@@ -9,9 +9,9 @@
 import UIKit
 
 class SensorTableViewController: UITableViewController {
-    var sensors = [true,true,true]
-    
-    
+    var sensors = [false,false,false,false,false,false,false,false,false,false,false,false]
+    var asensors: [AnalogS] = []
+    var client:TCPClient = TCPClient(addr: "items.ninja", port: 62626)
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -42,15 +42,13 @@ class SensorTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sensors.count
+        return asensors.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath)
-        
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
+        cell.configWithSensor(asensors[indexPath.row])
         return cell
     }
     
@@ -111,7 +109,8 @@ class SensorTableViewController: UITableViewController {
     
     
     @IBAction func disconnect(sender: UIBarButtonItem) {
-         dismissViewControllerAnimated(true, completion: nil)
+        client.close()
+        dismissViewControllerAnimated(true, completion: nil)
     }
    
     /*

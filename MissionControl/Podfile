@@ -5,6 +5,7 @@ target 'MissionControl' do
 pod 'BEMSimpleLineGraph'
 pod 'Charts'
 pod 'SwiftyJSON'
+pod 'JSONJoy-Swift', '~> 1.0.0'
 end
 
 target 'MissionControlTests' do
