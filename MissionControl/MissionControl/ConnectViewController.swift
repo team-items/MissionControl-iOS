@@ -215,6 +215,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             destination.enabledMotorServos = motors;
             destination.motors = motors
             destination.client = client
+            
         }
         
     }

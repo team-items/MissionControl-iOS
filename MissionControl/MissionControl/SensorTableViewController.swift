@@ -140,17 +140,20 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
                     if ind < cells.count{
                         if let asensor = enabledSensors[ind] as? AnalogS {
                             asensor.oldValues.append(value.doubleValue)
-                            let cell = cells[ind] as! SensorTableViewCell
+                            if let cell = cells[ind] as? SensorTableViewCell{
                             cell.update(value)
+                            }
                         }
                         if let dsensor = enabledSensors[ind] as? DigitalS {
-                            let cell = cells[ind] as! DigitalSensorTableViewCell
+                            
                             if(value.boolValue){
                                 dsensor.oldValues.append(1)
                             }else{
                                 dsensor.oldValues.append(0)
                             }
-                            cell.update(value)
+                            if let cell = cells[ind] as? DigitalSensorTableViewCell{
+                                cell.update(value)
+                            }
                         }
                     }
                 }
