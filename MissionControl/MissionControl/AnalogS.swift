@@ -9,12 +9,14 @@
 
 import Foundation
 import JSONJoy
+
 class AnalogS : JSONJoy {
     var MaxBound:NSNumber
     var Graph:NSNumber
     var DataType:String
     var MinBound:NSNumber
     var Name:String
+    var oldValues = [Double]()
     required init(_ json:JSONDecoder) {
         if let value = json["MaxBound"].number {
             MaxBound = value
@@ -24,7 +26,7 @@ class AnalogS : JSONJoy {
         if let value = json["Graph"].number {
             Graph = value
         } else {
-            Graph = 0
+            Graph = 40
         }
         if let value = json["DataType"].string {
             DataType = value
