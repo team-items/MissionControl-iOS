@@ -9,3 +9,5 @@ Clone or Download this Repo and run the following Command in the Project Directo
 pod install --verbose
 ```
 Open the newly created MissionControl.xcworkspace File.
+##License
+This project is licensed under the terms of the MIT license. See the LICENSE file.
