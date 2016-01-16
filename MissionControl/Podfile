@@ -3,7 +3,7 @@
 use_frameworks!
 target 'MissionControl' do
 pod 'BEMSimpleLineGraph'
-pod 'Charts'
+pod 'Charts', :git => 'https://github.com/team-items/ios-charts.git'
 pod 'SwiftyJSON'
 pod 'JSONJoy-Swift', '~> 1.0.0'
 end

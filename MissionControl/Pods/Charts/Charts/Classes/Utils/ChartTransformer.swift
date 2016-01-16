@@ -33,8 +33,17 @@ public class ChartTransformer: NSObject
     /// Prepares the matrix that transforms values to pixels. Calculates the scale factors from the charts size and offsets.
     public func prepareMatrixValuePx(chartXMin chartXMin: Double, deltaX: CGFloat, deltaY: CGFloat, chartYMin: Double)
     {
-        let scaleX = (_viewPortHandler.contentWidth / deltaX)
-        let scaleY = (_viewPortHandler.contentHeight / deltaY)
+        var scaleX = (_viewPortHandler.contentWidth / deltaX)
+        var scaleY = (_viewPortHandler.contentHeight / deltaY)
+        
+        if CGFloat.infinity == scaleX
+        {
+            scaleX = 0.0
+        }
+        if CGFloat.infinity == scaleY
+        {
+            scaleY = 0.0
+        }
 
         // setup all matrices
         _matrixValueToPx = CGAffineTransformIdentity
@@ -205,17 +214,18 @@ public class ChartTransformer: NSObject
     public func rectValueToPixel(inout r: CGRect, phaseY: CGFloat)
     {
         // multiply the height of the rect with the phase
-        if (r.origin.y > 0.0)
-        {
-            r.origin.y *= phaseY
-        }
-        else
-        {
-            var bottom = r.origin.y + r.size.height
-            bottom *= phaseY
-            r.size.height = bottom - r.origin.y
-        }
+        var bottom = r.origin.y + r.size.height
+        bottom *= phaseY
+        let top = r.origin.y * phaseY
+        r.size.height = bottom - top
+        r.origin.y = top
 
+        r = CGRectApplyAffineTransform(r, valueToPixelMatrix)
+    }
+    
+    /// Transform a rectangle with all matrices.
+    public func rectValueToPixelHorizontal(inout r: CGRect)
+    {
         r = CGRectApplyAffineTransform(r, valueToPixelMatrix)
     }
     
@@ -223,16 +233,11 @@ public class ChartTransformer: NSObject
     public func rectValueToPixelHorizontal(inout r: CGRect, phaseY: CGFloat)
     {
         // multiply the height of the rect with the phase
-        if (r.origin.x > 0.0)
-        {
-            r.origin.x *= phaseY
-        }
-        else
-        {
-            var right = r.origin.x + r.size.width
-            right *= phaseY
-            r.size.width = right - r.origin.x
-        }
+        var right = r.origin.x + r.size.width
+        right *= phaseY
+        let left = r.origin.x * phaseY
+        r.size.width = right - left
+        r.origin.x = left
         
         r = CGRectApplyAffineTransform(r, valueToPixelMatrix)
     }

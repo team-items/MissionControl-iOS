@@ -83,14 +83,14 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     }
     
 
-    
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         
         return true
     }
-    
+
 
     
     // Override to support editing the table view.
@@ -104,7 +104,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         }    
     }
     
-    
+    */
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell

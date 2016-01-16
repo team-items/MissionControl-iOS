@@ -1,0 +1,6 @@
+framework module Pods_MissionControlTests {
+  umbrella header "Pods-MissionControlTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

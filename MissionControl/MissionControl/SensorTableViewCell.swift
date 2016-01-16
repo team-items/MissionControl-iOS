@@ -46,7 +46,7 @@ class SensorTableViewCell: UITableViewCell, ChartViewDelegate{
         graph.drawBordersEnabled = true
         graph.borderColor = UIColor(netHex: 0xf43254)
         graph.gridBackgroundColor = UIColor.whiteColor()
-        graph.highlightEnabled = true
+        
         graph.highlightPerDragEnabled = true
         var axis = graph.getAxis(ChartYAxis.AxisDependency.Left)
         axis.drawGridLinesEnabled = false

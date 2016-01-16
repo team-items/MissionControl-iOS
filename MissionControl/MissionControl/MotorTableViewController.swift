@@ -11,7 +11,7 @@ import UIKit
 class MotorTableViewController: UITableViewController, UITabBarControllerDelegate {
     var enabledMotorServos: [MotorServo] = [] {
         didSet{
-            tableView.reloadData()
+            //tableView.reloadData()
         }
     }
     var motorServos: [MotorServo] = []
@@ -61,7 +61,7 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
     }
     
 
-    
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -74,13 +74,14 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            enabledMotorServos.removeFirst()
+            enabledMotorServos[indexPath.row].enabled = false
+            enabledMotorServos.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editm" {
             let destination = segue.destinationViewController as! UINavigationController

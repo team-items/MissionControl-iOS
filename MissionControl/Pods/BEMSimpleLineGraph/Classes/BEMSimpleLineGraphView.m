@@ -32,7 +32,6 @@ typedef NS_ENUM(NSInteger, BEMInternalTags)
 };
 
 @interface BEMSimpleLineGraphView () {
-    
     /// The number of Points in the Graph
     NSInteger numberOfPoints;
     
@@ -930,8 +929,9 @@ typedef NS_ENUM(NSInteger, BEMInternalTags)
         NSNumber *minimumValue;
         NSNumber *maximumValue;
 
-        minimumValue = [self calculateMinimumPointValue];//[NSNumber numberWithInt:0];
-        maximumValue = [self calculateMaximumPointValue];//[NSNumber numberWithInt:1024];
+        minimumValue = [self calculateMinimumPointValue];
+        maximumValue = [self calculateMaximumPointValue];
+        
         CGFloat numberOfLabels;
         if ([self.delegate respondsToSelector:@selector(numberOfYAxisLabelsOnLineGraph:)]) {
             numberOfLabels = [self.delegate numberOfYAxisLabelsOnLineGraph:self];

@@ -38,7 +38,7 @@ public class RadarChartView: PieRadarChartViewBase
     public var drawWeb = true
     
     /// modulus that determines how many labels and web-lines are skipped before the next is drawn
-    private var _webModulus = 1
+    private var _skipWebLineCount = 0
     
     /// the object reprsenting the y-axis labels
     private var _yAxis: ChartYAxis!
@@ -138,7 +138,7 @@ public class RadarChartView: PieRadarChartViewBase
     
     public override func notifyDataSetChanged()
     {
-        if (_dataNotSet)
+        if _data === nil
         {
             return
         }
@@ -164,12 +164,13 @@ public class RadarChartView: PieRadarChartViewBase
     {
         super.drawRect(rect)
 
-        if (_dataNotSet)
+        if _data === nil
         {
             return
         }
         
-        let context = UIGraphicsGetCurrentContext()
+        let optionalContext = UIGraphicsGetCurrentContext()
+        guard let context = optionalContext else { return }
         
         _xAxisRenderer?.renderAxisLabels(context: context)
 
@@ -184,7 +185,7 @@ public class RadarChartView: PieRadarChartViewBase
 
         if (valuesToHighlight())
         {
-            renderer!.drawHighlighted(context: context, indices: _indicesToHightlight)
+            renderer!.drawHighlighted(context: context, indices: _indicesToHighlight)
         }
 
         _yAxisRenderer.renderAxisLabels(context: context)
@@ -248,22 +249,22 @@ public class RadarChartView: PieRadarChartViewBase
     {
         get
         {
-            return _webModulus - 1
+            return _skipWebLineCount
         }
         set
         {
-            _webModulus = max(0, newValue) + 1
+            _skipWebLineCount = max(0, newValue)
         }
     }
     
-    internal override var requiredBottomOffset: CGFloat
+    internal override var requiredLegendOffset: CGFloat
     {
         return _legend.font.pointSize * 4.0
     }
 
     internal override var requiredBaseOffset: CGFloat
     {
-        return _xAxis.isEnabled && _xAxis.isDrawLabelsEnabled ? _xAxis.labelWidth : 10.0
+        return _xAxis.isEnabled && _xAxis.isDrawLabelsEnabled ? _xAxis.labelRotatedWidth : 10.0
     }
 
     public override var radius: CGFloat
