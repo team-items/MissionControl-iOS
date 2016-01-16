@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 class SensorTableViewController: UITableViewController, UITabBarControllerDelegate {
-    var sensorsexpanded = [false,false,false,false,false,false,false,false,false,false,false,false, false,false,false,false, false,false,false,false, false,false,false,false]
+    var sensorsexpanded = [Bool]()
     var cells = [UITableViewCell]()
     var enabledSensors: [Sensor] = [] {
         didSet{
@@ -35,6 +35,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
         timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "test", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -108,6 +109,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
+        
         if !sensorsexpanded[indexPath.row]{
             cell.graph.alpha = 1
         }
@@ -157,7 +159,10 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-            if sensorsexpanded[indexPath.row]{
+        if sensorsexpanded.count <= indexPath.row{
+            sensorsexpanded.append(false)
+        }
+        if sensorsexpanded[indexPath.row]{
             return 209
         }
         else{

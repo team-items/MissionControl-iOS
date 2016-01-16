@@ -18,7 +18,8 @@ class MotorTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-       slider.continuous = false
+        slider.continuous = false
+        
     }
     func configWithMotor(motor: MotorServo){
         self.motor = motor
