@@ -8,6 +8,6 @@ Clone or Download this Repo and run the following Command in the Project Directo
 ```bash
 pod install --verbose
 ```
-Open the newly created MissionControl.xcworkspace File.
+Open the newly created MissionControl.xcworkspace File and change the bundle identifier.
 ##License
 This project is licensed under the terms of the MIT license. See the LICENSE file.
