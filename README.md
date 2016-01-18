@@ -1,13 +1,18 @@
-# MissionControl-iOS
+# MissionControl iOS App
 
 ##Installation
-Please refer to the Develope Section below as there is no official Release of the MissionControl iOS App in the App Store yet.
-##Develope
-Required: latest Version of Cocoapods<br>
-Clone or Download this Repo and run the following Command in the Project Directory (Directory where the Podfile is located)
+Please refer to the Develop section below as there is no official release of the MissionControl iOS App in the AppStore yet.
+
+##Develop
+___Required: latest Version of Cocoapods___
+
+Clone or download this repository and run the following command in the project-directory (Directory where the Podfile is located)
+
 ```bash
 pod install --verbose
 ```
-Open the newly created MissionControl.xcworkspace File and change the bundle identifier.
+
+Open the newly created MissionControl.xcworkspace file and change the bundle identifier.
+
 ##License
 This project is licensed under the terms of the MIT license. See the LICENSE file.
