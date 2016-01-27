@@ -54,7 +54,7 @@ class TCPClient:YSocket{
      * return success or fail with message
      */
     func connect(timeout t:Int)->(Bool,String){
-        var rs:Int32=c_ytcpsocket_connect(self.addr, port: Int32(self.port),timeout: Int32(t))
+        let rs:Int32=c_ytcpsocket_connect(self.addr, port: Int32(self.port),timeout: Int32(t))
         if rs>0{
             self.fd=rs
             return (true,"connect success")
@@ -90,7 +90,7 @@ class TCPClient:YSocket{
     */
     func send(data d:[UInt8])->(Bool,String){
         if let fd:Int32=self.fd{
-            var sendsize:Int32=c_ytcpsocket_send(fd, d, len: Int32(d.count))
+            let sendsize:Int32=c_ytcpsocket_send(fd, d, len: Int32(d.count))
             if Int(sendsize)==d.count{
                return (true,"send success")
             }else{
@@ -106,7 +106,7 @@ class TCPClient:YSocket{
     */
     func send(str s:String)->(Bool,String){
         if let fd:Int32=self.fd{
-            var sendsize:Int32=c_ytcpsocket_send(fd, s, len: Int32(strlen(s)))
+            let sendsize:Int32=c_ytcpsocket_send(fd, s, len: Int32(strlen(s)))
             if sendsize==Int32(strlen(s)){
                 return (true,"send success")
             }else{
@@ -124,7 +124,7 @@ class TCPClient:YSocket{
         if let fd:Int32=self.fd{
             var buff:[UInt8] = [UInt8](count:d.length,repeatedValue:0x0)
             d.getBytes(&buff, length: d.length)
-            var sendsize:Int32=c_ytcpsocket_send(fd, buff, len: Int32(d.length))
+            let sendsize:Int32=c_ytcpsocket_send(fd, buff, len: Int32(d.length))
             if sendsize==Int32(d.length){
                 return (true,"send success")
             }else{
@@ -157,7 +157,7 @@ class TCPServer:YSocket{
 
     func listen()->(Bool,String){
         
-        var fd:Int32=c_ytcpsocket_listen(self.addr, port: Int32(self.port))
+        let fd:Int32=c_ytcpsocket_listen(self.addr, port: Int32(self.port))
         if fd>0{
             self.fd=fd
             return (true,"listen success")

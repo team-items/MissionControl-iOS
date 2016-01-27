@@ -17,10 +17,15 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         }
     }
     var sensors: [Sensor] = []
-    var client:TCPClient = TCPClient()
+    var manager:NetworkManager?
     var timer = NSTimer();
     var enabledMotorServos: [MotorServo] = []
     var motors: [MotorServo] = []
+    
+    let tableCellHeightExpanded:CGFloat = 209
+    let tableCellHeightCollapsed:CGFloat = 45
+    let refreshRate = 0.1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,9 +38,9 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
         
         navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "test", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
+        timer = NSTimer.scheduledTimerWithTimeInterval(refreshRate, target: self, selector: "updateSensors", userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -83,30 +88,6 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        
-        return true
-    }
-
-
-    
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            sensorsexpanded.removeFirst()
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    
-    */
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
         
@@ -117,7 +98,6 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
            cell.graph.alpha = 0
         }
         
-        print("lol")
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
         print(cell.ispaused)
         if cell.ispaused{
@@ -129,10 +109,9 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         tableView.endUpdates()
 
     }
-    func test(){
-        var data = client.read(2048)
-        var jsonString = NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
-        let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+    
+    func updateSensors(){
+        let dataFromString = manager!.latest.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         var dat = JSON(data : dataFromString!)
         for (sensorname, value) in dat["Data"].dictionaryValue{
             for (var ind = 0; ind < enabledSensors.count; ind++){
@@ -159,25 +138,25 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
                 }
             }
         }
-        
     }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if sensorsexpanded.count <= indexPath.row{
             sensorsexpanded.append(false)
         }
         if sensorsexpanded[indexPath.row]{
-            return 209
+            return tableCellHeightExpanded
         }
         else{
-            return 45
-            }
+            return tableCellHeightCollapsed
+        }
     }
     
     
     
     @IBAction func disconnect(sender: UIBarButtonItem) {
         timer.invalidate()
-        client.close()
+        manager!.disconnect()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -198,34 +177,41 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         if let destination = dest.viewControllers[0] as? MotorTableViewController{
             destination.enabledMotorServos = enabledMotorServos
             destination.motorServos = motors
-            destination.timer = timer
-            destination.client = client
+            destination.manager = manager!
         }
         return true
     }
+    
     /*
+    // Override to support conditional editing of the table view.
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    // Return false if you do not want the specified item to be editable.
+    
+    return true
+    }
+    
+    
+    
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            sensorsexpanded.removeFirst()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
     }
-    
-
 
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-*/
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
 

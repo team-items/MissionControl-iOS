@@ -48,18 +48,18 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
         graph.gridBackgroundColor = UIColor.whiteColor()
         
         graph.highlightPerDragEnabled = true
-        var axis = graph.getAxis(ChartYAxis.AxisDependency.Left)
+        let axis = graph.getAxis(ChartYAxis.AxisDependency.Left)
         axis.drawGridLinesEnabled = false
         axis.drawAxisLineEnabled = false
         axis.spaceTop = 0
-        var axis2 = graph.getAxis(ChartYAxis.AxisDependency.Right)
+        let axis2 = graph.getAxis(ChartYAxis.AxisDependency.Right)
         axis2.drawGridLinesEnabled = true
         axis2.drawAxisLineEnabled = false
         axis2.spaceTop = 0
         
         graph.descriptionText = ""
         setDataCount(points, range: 1024)
-        var marker: ChartMarker = ChartMarker(color: UIColor(netHex: 0xf43254), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+        let marker: ChartMarker = ChartMarker(color: UIColor(netHex: 0xf43254), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         
         marker.minimumSize = CGSizeMake(80, 40)
         graph.marker = marker
@@ -75,8 +75,8 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
         self.sensorLabel.text = sensor.Name
         self.visible = sensor.Graph.integerValue
         setDataCount(visible, range: 1)
-        var leftAxis: ChartYAxis = graph.getAxis(ChartYAxis.AxisDependency.Left)
-        var rightAxis:ChartYAxis = graph.getAxis(ChartYAxis.AxisDependency.Right)
+        let leftAxis: ChartYAxis = graph.getAxis(ChartYAxis.AxisDependency.Left)
+        let rightAxis:ChartYAxis = graph.getAxis(ChartYAxis.AxisDependency.Right)
         leftAxis.axisMaximum = 1
         leftAxis.axisMinimum = 0
         leftAxis.axisRange = 1
@@ -94,8 +94,8 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
         }
         var yVals: [ChartDataEntry] = [ChartDataEntry]()
         for var i = 0; i < count; i++ {
-            var mult: UInt32 = (UInt32(range) + 1)
-            var val: Double = Double(0)
+            //let mult: UInt32 = (UInt32(range) + 1)
+            let val: Double = Double(0)
             yVals.append(ChartDataEntry(value: val, xIndex: i))
         }
         set1 = LineChartDataSet(yVals: yVals, label: "DataSet 1")
@@ -110,7 +110,7 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
         
         var dataSets: [ChartDataSet] = [ChartDataSet]()
         dataSets.append(set1)
-        var data: LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        let data: LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
         
         graph.data = data
     }
@@ -118,8 +118,8 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
     @IBAction func pause(sender: UIButton) {
         ispaused = !ispaused
         if ispaused{
-            var data = graph.data!
-            var set = data.getDataSetByIndex(0);
+            let data = graph.data!
+            let set = data.getDataSetByIndex(0);
             for entry in set.yVals {
                 sensor.oldValues.append(Int(entry.value))
                 set.removeEntry(entry)
@@ -135,11 +135,11 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
             pauseButton.setTitle("Resume", forState: UIControlState.Normal)
         }else{
             pauseButton.setTitle("Pause", forState: UIControlState.Normal)
-            var data = graph.data!
-            var set = data.getDataSetByIndex(0);
+            let data = graph.data!
+            let set = data.getDataSetByIndex(0);
             print(set.yVals.count - visible)
             print(set.yVals.count)
-            var vari = set.yVals.count - visible
+            let vari = set.yVals.count - visible
             var vals: [ChartDataEntry] = Array(set.yVals.dropFirst(vari))
             for entry in set.yVals{
                 graph.data!.removeXValue(0)
@@ -158,17 +158,17 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
     func update(value: JSON){
         if (!ispaused){
             valueLabel.text = value.stringValue
-            var mult: UInt32 = (UInt32(1024) + 1)
+            //let mult: UInt32 = (UInt32(1024) + 1)
             var val: Double = 0
             if(value.boolValue){
                 val = 1
             }
             
-            var data = graph.data!
-            var set = data.getDataSetByIndex(0);
+            let data = graph.data!
+            let set = data.getDataSetByIndex(0);
             data.addXValue("")
             data.removeXValue(0)
-            if var x = set.entryForXIndex(0){
+            if var _ = set.entryForXIndex(0){
                 sensor.oldValues.append(Int(set.entryForXIndex(0)!.value))
             }
             set.removeEntry(xIndex: 0)
@@ -194,11 +194,11 @@ class DigitalSensorTableViewCell: UITableViewCell, ChartViewDelegate{
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        print("lol")
+        //
     }
     
     func chartValueNothingSelected(chartView: ChartViewBase) {
-        print("not so lol")
+        //
     }
 }
 

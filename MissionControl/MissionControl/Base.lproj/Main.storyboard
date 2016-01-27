@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jdF-Xf-Df3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jdF-Xf-Df3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V2e-ch-Yes" id="cSR-Ru-gHg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Servo 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCa-9g-nsS">
@@ -59,6 +59,8 @@
                                             <color key="maximumTrackTintColor" red="0.95686274510000002" green="0.1960784314" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="sliderChanged:" destination="V2e-ch-Yes" eventType="valueChanged" id="qsp-dh-R5o"/>
+                                                <action selector="touchUp:" destination="V2e-ch-Yes" eventType="touchUpOutside" id="1Y7-qH-UPm"/>
+                                                <action selector="touchUp:" destination="V2e-ch-Yes" eventType="touchUpInside" id="q1g-6c-uYC"/>
                                             </connections>
                                         </slider>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngJ-B1-8Hb">
@@ -128,7 +130,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ct-QO-oK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="1510"/>
+            <point key="canvasLocation" x="802" y="1518"/>
         </scene>
         <!--Edit-->
         <scene sceneID="Tpd-kA-xhv">
@@ -143,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Gd-gb-IyS" id="7Wo-tI-UDN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="46.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B55-Mp-iTv">
@@ -201,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="209"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Us-go-DsW" id="noK-31-WTp">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="208.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sensor 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnX-wX-Lfx">
@@ -216,7 +218,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJp-Ew-3LR" customClass="LineChartView" customModule="Charts">
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJp-Ew-3LR" customClass="LineChartView" customModule="Charts">
                                             <rect key="frame" x="8" y="37" width="584" height="164"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -295,7 +297,7 @@
                                 <rect key="frame" x="0.0" y="301" width="600" height="209"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kEb-Tz-y4f" id="V3D-gf-oPC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="208.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sensor 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0c-f4-ywz">
@@ -310,7 +312,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZx-hR-f2b" customClass="LineChartView" customModule="Charts">
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZx-hR-f2b" customClass="LineChartView" customModule="Charts">
                                             <rect key="frame" x="8" y="37" width="584" height="164"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -577,6 +579,6 @@
         <image name="sensor" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Bh-Lf-bKo"/>
+        <segue reference="fwr-r4-lzA"/>
     </inferredMetricsTieBreakers>
 </document>
