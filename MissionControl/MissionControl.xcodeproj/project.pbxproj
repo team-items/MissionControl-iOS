@@ -480,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A147C11C556A150033B7D6 /* NetworkManager.swift in Sources */,
 				C1722BF21C443D7B000262D7 /* Sensor.swift in Sources */,
 				C1722BF41C444761000262D7 /* DigitalSensorTableViewCell.swift in Sources */,
 				C1FB94981BC4012E00601E6D /* ConnectViewController.swift in Sources */,

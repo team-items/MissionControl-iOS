@@ -3,7 +3,7 @@
 //  MissionControl
 //
 //  Created by Daniel Honies on 04.10.15.
-//  Copyright © 2015 Daniel Honies. All rights reserved.
+//  Copyright © 2015 F-WuTS. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     
     let tableCellHeightExpanded:CGFloat = 209
     let tableCellHeightCollapsed:CGFloat = 45
-    let refreshRate = 0.1
+    let refreshRate = 0.05
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +138,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
                 }
             }
         }
+        print("updated")
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

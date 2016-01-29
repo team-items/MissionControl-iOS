@@ -48,7 +48,10 @@ class NetworkManager {
             //receives parts of connlao until it is parseable
             var parseable = false
             while (!parseable){
+                usleep(10000)
+                print("connLAO")
                 connLAO = (connLAO as String) + (receiveString() as String)
+                print(connLAO)
                 do {
                     //try to serialize json, will succeed if valid json
                     try NSJSONSerialization.JSONObjectWithData(self.connLAO.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: []) as! [String: AnyObject]
@@ -100,8 +103,9 @@ class NetworkManager {
         queue.addOperationWithBlock() {
             while(!self.aborted){
                 self.latest = self.receiveString()
+                print("received")
                 NSOperationQueue.mainQueue().addOperationWithBlock() {
-                    // when done, update your UI and/or model on the main queue
+                    //add operation to main queue
                 }
             }
             self.sock!.close()
