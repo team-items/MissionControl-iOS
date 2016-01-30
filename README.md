@@ -1,5 +1,5 @@
 # MissionControl iOS App
-
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/team-items/MissionControl-iOS/blob/master/License)
 ##Installation
 Please refer to the Develop section below as there is no official release of the MissionControl iOS App in the AppStore yet.
 
