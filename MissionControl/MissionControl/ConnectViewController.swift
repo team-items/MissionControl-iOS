@@ -143,7 +143,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func connect(url: String){
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.labelText = "Loading"
+        loadingNotification.labelText = "Connecting"
         manager = NetworkManager()
         manager.setServer(url, port: 62626)
         manager.connect(self)
