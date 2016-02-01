@@ -27,7 +27,8 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     // Set supported barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     //ConnLAO Message holding variable
-    var connLAO: JSON = nil;
+    var connLAO: JSON = nil
+    var isConnecting:Bool = false
     
     
     override func viewDidLoad() {
@@ -151,6 +152,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     //called after connecting
     func performConnectedAction(connected:Bool){
+        isConnecting = false
         if(connected){
             manager.updateAsync()
             performSegueWithIdentifier("connect", sender: self)
@@ -223,7 +225,10 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     @IBAction func connectClicked(sender: UIBarButtonItem) {
-        connect(hostIpField.text!)
+        if(!isConnecting){
+            isConnecting = true
+            connect(hostIpField.text!)
+        }
     }
     
     // MARK: UITextFieldDelegate
