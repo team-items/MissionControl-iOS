@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-class SensorTableViewController: UITableViewController, UITabBarControllerDelegate {
+class SensorTableViewController: UITableViewController, UITabBarControllerDelegate, DisconnectableProtocol {
     var sensorsexpanded = [Bool]()
     var cells = [UITableViewCell]()
     var enabledSensors: [Sensor] = [] {
@@ -46,6 +46,10 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        manager!.view = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -181,6 +185,11 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
             destination.manager = manager!
         }
         return true
+    }
+    
+    func shouldCloseCauseServerCrash(){
+        timer.invalidate()
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*

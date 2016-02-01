@@ -161,8 +161,9 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let senContr = segue.destinationViewController as! TabViewController
             let controller = senContr.viewControllers![0] as! UINavigationController
             let destination = controller.visibleViewController as! SensorTableViewController
-            var sensors: [Sensor] = [];
-            var motors: [MotorServo] = [];
+            manager.view = destination
+            var sensors: [Sensor] = []
+            var motors: [MotorServo] = []
             
             print(manager.connLAO)
             

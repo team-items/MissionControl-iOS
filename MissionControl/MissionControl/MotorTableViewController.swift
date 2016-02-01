@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MotorTableViewController: UITableViewController, UITabBarControllerDelegate {
+class MotorTableViewController: UITableViewController, UITabBarControllerDelegate, DisconnectableProtocol {
     var enabledMotorServos: [MotorServo] = [] {
         didSet{
             //tableView.reloadData()
@@ -30,6 +30,10 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        manager!.view = self
     }
    
     override func didReceiveMemoryWarning() {
@@ -93,6 +97,10 @@ class MotorTableViewController: UITableViewController, UITabBarControllerDelegat
     
     @IBAction func disc(sender: UIBarButtonItem) {
         manager!.disconnect()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func shouldCloseCauseServerCrash(){
         dismissViewControllerAnimated(true, completion: nil)
     }
     

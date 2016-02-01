@@ -28,6 +28,7 @@ class NetworkManager {
     var connLAO:NSString = ""
     var latest:NSString = ""
     var aborted:Bool = false
+    var view:DisconnectableProtocol? = nil
     
     //Sets the ip and port of the server it will connect to
     func setServer(addr:String, port:Int){
@@ -85,7 +86,7 @@ class NetworkManager {
             data = sock!.read(segmentSize)
             if(data == nil){
                 sock!.close()
-                //in this case server crashed, change view controller then
+                view!.shouldCloseCauseServerCrash()
                 return ""
             } else {
                 return NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!

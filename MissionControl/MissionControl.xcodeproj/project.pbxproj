@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022168821C5FF5CA00F1E0F6 /* DisconnectableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022168811C5FF5CA00F1E0F6 /* DisconnectableProtocol.swift */; };
 		02A147C11C556A150033B7D6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A147C01C556A150033B7D6 /* NetworkManager.swift */; };
 		29D4E93D954A36E2676B896E /* Pods_MissionControlUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6420BC426EB3FE6413BE4422 /* Pods_MissionControlUITests.framework */; };
 		7BDF8D22754591EF801AF79D /* Pods_MissionControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5BDF4CDF67CDEF1B017B45 /* Pods_MissionControl.framework */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022168811C5FF5CA00F1E0F6 /* DisconnectableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectableProtocol.swift; sourceTree = "<group>"; };
 		02A147C01C556A150033B7D6 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		16C9BB86BDE680D94CD93765 /* Pods-MissionControlUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControlUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControlUITests/Pods-MissionControlUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3031DE2A1CFD7BC74A176A62 /* Pods-MissionControlTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionControlTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionControlTests/Pods-MissionControlTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				C1722BF11C443D7B000262D7 /* Sensor.swift */,
 				C1722BF31C444761000262D7 /* DigitalSensorTableViewCell.swift */,
 				02A147C01C556A150033B7D6 /* NetworkManager.swift */,
+				022168811C5FF5CA00F1E0F6 /* DisconnectableProtocol.swift */,
 			);
 			path = MissionControl;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				022168821C5FF5CA00F1E0F6 /* DisconnectableProtocol.swift in Sources */,
 				02A147C11C556A150033B7D6 /* NetworkManager.swift in Sources */,
 				C1722BF21C443D7B000262D7 /* Sensor.swift in Sources */,
 				C1722BF41C444761000262D7 /* DigitalSensorTableViewCell.swift in Sources */,
