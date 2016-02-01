@@ -128,8 +128,8 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         self.presentViewController(alertPrompt, animated: true, completion: nil)
     }
     
-    func showConnectingError(url: String){
-        let alertPrompt = UIAlertController(title: "Connecting error", message: "Could not connect to \(url)", preferredStyle: .ActionSheet)
+    func showConnectingError(){
+        let alertPrompt = UIAlertController(title: "Connecting error", message: "Could not connect to server", preferredStyle: .ActionSheet)
         
         alertPrompt.addAction(
             UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
@@ -138,16 +138,21 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         self.presentViewController(alertPrompt, animated: true, completion: nil)
     }
     
+    //setting up connection and calling the asynchronous
     func connect(url: String){
         manager = NetworkManager()
         manager.setServer(url, port: 62626)
-        if(manager.connect()){
+        manager.connect(self)
+    }
+    
+    //called after connecting
+    func performConnectedAction(connected:Bool){
+        if(connected){
             manager.updateAsync()
             performSegueWithIdentifier("connect", sender: self)
         } else {
-            showConnectingError(url)
+            showConnectingError()
         }
-     
     }
     
     

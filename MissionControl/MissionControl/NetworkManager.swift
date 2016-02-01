@@ -35,39 +35,42 @@ class NetworkManager {
     }
     
     //Connects to server and handles handshake
-    func connect() -> Bool{
-        
-        let (_, errorMsg) = sock!.connect(timeout: connectTimeout)
-        if(errorMsg == "connect success"){
-            //Send connREQ Message
-            sendString(connREQ)
-            
-            //Receive Answer (ConnACK or ConnREJ) from Server
-            connACK = receiveString()
-
-            //receives parts of connlao until it is parseable
-            var parseable = false
-            while (!parseable){
-                usleep(10000)
-                print("connLAO")
-                connLAO = (connLAO as String) + (receiveString() as String)
-                print(connLAO)
-                do {
-                    //try to serialize json, will succeed if valid json
-                    try NSJSONSerialization.JSONObjectWithData(self.connLAO.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: []) as! [String: AnyObject]
-                    parseable = true
-                } catch _ {
-                    print("inparseable")
+    func connect(caller:ConnectViewController){
+        queue.addOperationWithBlock() {
+            let (_, errorMsg) = self.sock!.connect(timeout: self.connectTimeout)
+            if(errorMsg == "connect success"){
+                //Send connREQ Message
+                self.sendString(self.connREQ)
+                
+                //Receive Answer (ConnACK or ConnREJ) from Server
+                self.connACK = self.receiveString()
+                
+                //receives parts of connlao until it is parseable
+                var parseable = false
+                while (!parseable){
+                    usleep(10000)
+                    print("connLAO")
+                    self.connLAO = (self.connLAO as String) + (self.receiveString() as String)
+                    print(self.connLAO)
+                    do {
+                        //try to serialize json, will succeed if valid json
+                        try NSJSONSerialization.JSONObjectWithData(self.connLAO.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: []) as! [String: AnyObject]
+                        parseable = true
+                    } catch _ {
+                        print("inparseable")
+                    }
+                }
+                
+                //Send ConnSTT
+                self.sendString(self.connSTT)
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    caller.performConnectedAction(true)
                 }
             }
-            
-            //Send ConnSTT
-            sendString(connSTT)
-            
-            return true
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                caller.performConnectedAction(false)
+            }
         }
-        
-        return false
     }
     
     //wrapper for the socket send function
@@ -103,7 +106,6 @@ class NetworkManager {
         queue.addOperationWithBlock() {
             while(!self.aborted){
                 self.latest = self.receiveString()
-                print("received")
                 NSOperationQueue.mainQueue().addOperationWithBlock() {
                     //add operation to main queue
                 }
