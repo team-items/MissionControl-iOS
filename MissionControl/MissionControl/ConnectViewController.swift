@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import SwiftyJSON
 import JSONJoy
+import MBProgressHUD
 class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var connect: UIBarButtonItem!
@@ -140,6 +141,9 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     //setting up connection and calling the asynchronous
     func connect(url: String){
+        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.Indeterminate
+        loadingNotification.labelText = "Loading"
         manager = NetworkManager()
         manager.setServer(url, port: 62626)
         manager.connect(self)
@@ -150,6 +154,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if(connected){
             manager.updateAsync()
             performSegueWithIdentifier("connect", sender: self)
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         } else {
             showConnectingError()
         }
