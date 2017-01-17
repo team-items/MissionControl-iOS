@@ -14,24 +14,24 @@
 import Foundation
 import UIKit
 import Charts
-public class MissionChartMarker: ChartComponentBase
+open class MissionChartMarker: ComponentBase
 {
     /// The marker image to render
-    public var image: UIImage?
+    open var image: UIImage?
     
     /// Use this to return the desired offset you wish the MarkerView to have on the x-axis.
-    public var offset: CGPoint = CGPoint()
-    public var color: UIColor?
-    public var arrowSize = CGSize(width: 15, height: 11)
-    public var font: UIFont?
-    public var insets = UIEdgeInsets()
-    public var minimumSize = CGSize()
+    open var offset: CGPoint = CGPoint()
+    open var color: UIColor?
+    open var arrowSize = CGSize(width: 15, height: 11)
+    open var font: UIFont?
+    open var insets = UIEdgeInsets()
+    open var minimumSize = CGSize()
     
-    private var labelns: NSString?
-    private var _labelSize: CGSize = CGSize()
-    private var _size: CGSize = CGSize()
-    private var _paragraphStyle: NSMutableParagraphStyle?
-    private var _drawAttributes = [String : AnyObject]()
+    fileprivate var labelns: NSString?
+    fileprivate var _labelSize: CGSize = CGSize()
+    fileprivate var _size: CGSize = CGSize()
+    fileprivate var _paragraphStyle: NSMutableParagraphStyle?
+    fileprivate var _drawAttributes = [String : AnyObject]()
     
     public init(color: UIColor, font: UIFont, insets: UIEdgeInsets)
     {
@@ -41,13 +41,13 @@ public class MissionChartMarker: ChartComponentBase
         self.font = font
         self.insets = insets
         
-        _paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as? NSMutableParagraphStyle
-        _paragraphStyle?.alignment = .Center
+        _paragraphStyle = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
+        _paragraphStyle?.alignment = .center
     }
     
-    public  var size: CGSize { return _size; }
+    open  var size: CGSize { return _size; }
     
-    public func draw(context context: CGContext, point: CGPoint)
+    open func draw(context: CGContext, point: CGPoint)
     {
         if (labelns == nil)
         {
@@ -58,62 +58,47 @@ public class MissionChartMarker: ChartComponentBase
         rect.origin.x -= _size.width / 2.0
         rect.origin.y -= _size.height
         
-        CGContextSaveGState(context)
+        context.saveGState()
         
-        CGContextSetFillColorWithColor(context, color?.CGColor)
-        CGContextBeginPath(context)
-        CGContextMoveToPoint(context,
-            rect.origin.x,
-            rect.origin.y)
-        CGContextAddLineToPoint(context,
-            rect.origin.x + rect.size.width,
-            rect.origin.y)
-        CGContextAddLineToPoint(context,
-            rect.origin.x + rect.size.width,
-            rect.origin.y + rect.size.height - arrowSize.height)
-        CGContextAddLineToPoint(context,
-            rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
-            rect.origin.y + rect.size.height - arrowSize.height)
-        CGContextAddLineToPoint(context,
-            rect.origin.x + rect.size.width / 2.0,
-            rect.origin.y + rect.size.height)
-        CGContextAddLineToPoint(context,
-            rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
-            rect.origin.y + rect.size.height - arrowSize.height)
-        CGContextAddLineToPoint(context,
-            rect.origin.x,
-            rect.origin.y + rect.size.height - arrowSize.height)
-        CGContextAddLineToPoint(context,
-            rect.origin.x,
-            rect.origin.y)
-        CGContextFillPath(context)
+        context.setFillColor((color?.cgColor)!)
+        context.beginPath()
+        context.move(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width / 2.0, y: rect.origin.y + rect.size.height))
+        context.addLine(to: CGPoint(x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
+        context.fillPath()
         
         rect.origin.y += self.insets.top
         rect.size.height -= self.insets.top + self.insets.bottom
         
         UIGraphicsPushContext(context)
         
-        labelns?.drawInRect(rect, withAttributes: _drawAttributes)
+        labelns?.draw(in: rect, withAttributes: _drawAttributes)
         
         UIGraphicsPopContext()
         
-        CGContextRestoreGState(context)
+        context.restoreGState()
     }
     
-    public func refreshContent(entry entry: ChartDataEntry, highlight: ChartHighlight)
+    open func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        let label = entry.value.description
+       /* let label = entry.value.description
         labelns = label as NSString
         
         _drawAttributes.removeAll()
         _drawAttributes[NSFontAttributeName] = self.font
         _drawAttributes[NSParagraphStyleAttributeName] = _paragraphStyle
         
-        _labelSize = labelns?.sizeWithAttributes(_drawAttributes) ?? CGSizeZero
+        _labelSize = labelns?.size(attributes: _drawAttributes) ?? CGSize.zero
         _size.width = _labelSize.width + self.insets.left + self.insets.right
         _size.height = _labelSize.height + self.insets.top + self.insets.bottom
         _size.width = max(minimumSize.width, _size.width)
         _size.height = max(minimumSize.height, _size.height)
+ */
     }
     
 }

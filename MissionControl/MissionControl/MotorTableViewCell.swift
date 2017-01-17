@@ -20,11 +20,11 @@ class MotorTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        slider.continuous = true
+        slider.isContinuous = true
         
     }
     
-    func configWithMotor(motor: MotorServo){
+    func configWithMotor(_ motor: MotorServo){
         self.motor = motor
         nameLabel.text = motor.Name
         slider.maximumValue = Float(motor.MaxBound)
@@ -32,7 +32,7 @@ class MotorTableViewCell: UITableViewCell {
     }
     
     //Grabs the network manager from the superview and sends message
-    func sendControl(msg:String){
+    func sendControl(_ msg:String){
         let tableView:UITableView? = self.superview?.superview! as? UITableView
         let con = tableView!.dataSource as! MotorTableViewController
         manager = con.manager!
@@ -40,18 +40,18 @@ class MotorTableViewCell: UITableViewCell {
         manager!.sendAsync(msg)
     }
     
-    @IBAction func sliderChanged(sender: UISlider) {
+    @IBAction func sliderChanged(_ sender: UISlider) {
         valueLabel.text = String(Int(slider.value))
     }
     
-    @IBAction func touchUp(sender: AnyObject) {
+    @IBAction func touchUp(_ sender: AnyObject) {
         sendControl("{\"Control\":{\"" + motor.SliderName + "\": " + String(Int(slider.value)) + "}} ")
     }
     
-    @IBAction func buttonClicked(sender: UIButton) {
+    @IBAction func buttonClicked(_ sender: UIButton) {
          sendControl("{\"Control\":{\"" + motor.ButtonName + "\": \"click\"}} ")
     }
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: false)
     }
 

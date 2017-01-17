@@ -17,10 +17,10 @@ class EditTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func conwithsensor(sensor:AnalogS){
+    func conwithsensor(_ sensor:AnalogS){
         self.sensor = sensor
      }
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: animated)
 
         // Configure the view for the selected state

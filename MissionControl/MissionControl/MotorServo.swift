@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Foundation
 import JSONJoy
 class MotorServo: Sensor {
     var MaxBound:NSNumber
@@ -16,18 +15,19 @@ class MotorServo: Sensor {
     var SliderName: String
     var ButtonName: String
     required init(_ json:JSONDecoder) {
-        if let value = json["ControlType"].string {
-            ControlType = value
+        
+        if let value:String? = json["ControlType"].getOptional() {
+            ControlType = value!
         } else {
             ControlType = ""
         }
-        if let value = json["MaxBound"].number {
-            MaxBound = value
+        if let value:NSNumber? = json["MaxBound"].getOptional() {
+            MaxBound = value!
         } else {
             MaxBound = 0
         }
-        if let value = json["MinBound"].number {
-            MinBound = value
+        if let value:NSNumber? = json["MinBound"].getOptional() {
+            MinBound = value!
         } else {
             MinBound = 0
         }

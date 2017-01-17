@@ -20,6 +20,34 @@
                ReferencedContainer = "container:MissionControl.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C1CB0F761BC08087000FA9A1"
+               BuildableName = "MissionControlTests.xctest"
+               BlueprintName = "MissionControlTests"
+               ReferencedContainer = "container:MissionControl.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C1CB0F811BC08087000FA9A1"
+               BuildableName = "MissionControlUITests.xctest"
+               BlueprintName = "MissionControlUITests"
+               ReferencedContainer = "container:MissionControl.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,26 +56,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C1CB0F761BC08087000FA9A1"
-               BuildableName = "MissionControlTests.xctest"
-               BlueprintName = "MissionControlTests"
-               ReferencedContainer = "container:MissionControl.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C1CB0F811BC08087000FA9A1"
-               BuildableName = "MissionControlUITests.xctest"
-               BlueprintName = "MissionControlUITests"
-               ReferencedContainer = "container:MissionControl.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

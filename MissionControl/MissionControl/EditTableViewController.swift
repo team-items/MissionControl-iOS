@@ -15,11 +15,11 @@ class EditTableViewController: UITableViewController {
     var delegate = UITableViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
+        navigationController!.navigationBar.barStyle = UIBarStyle.black
+        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.white
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
        
-        UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
+        UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.white ]
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,12 +34,12 @@ class EditTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    @IBAction func save(sender: AnyObject) {
+    @IBAction func save(_ sender: AnyObject) {
         if let delegat = delegate as? SensorTableViewController{
             delegat.enabledSensors = self.enabledSensors
             delegat.sensors = self.sensors
@@ -49,20 +49,20 @@ class EditTableViewController: UITableViewController {
             deleg.motorServos = self.sensors as! [MotorServo]
             deleg.tableView.reloadData()
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return sensors.count
     }
 
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath) as! EditTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "senmot", for: indexPath) as! EditTableViewCell
         cell.nameLabel.text = sensors[indexPath.row].Name
         if sensors[indexPath.row].enabled{
             cell.switcher.setOn(true, animated: false)
@@ -72,16 +72,16 @@ class EditTableViewController: UITableViewController {
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.dequeueReusableCellWithIdentifier("senmot", forIndexPath: indexPath) as! EditTableViewCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "senmot", for: indexPath) as! EditTableViewCell
         
         var i = 0;
         var found = false;
-        for (var ind = 0; ind < enabledSensors.count; ind++){
+        for ind in 0 ..< enabledSensors.count{
             print(enabledSensors[ind].Name)
             print(cell.sensor.Name)
             if sensors[indexPath.row].Name == enabledSensors[ind].Name{
@@ -89,7 +89,7 @@ class EditTableViewController: UITableViewController {
                 found = true
                 enabledSensors[ind].enabled = false
                 print("sensorfound")
-                enabledSensors.removeAtIndex(i)
+                enabledSensors.remove(at: i)
             }
         }
         if !found{
@@ -133,14 +133,14 @@ class EditTableViewController: UITableViewController {
 
     
     // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
 
     }
     
 
     
     // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }

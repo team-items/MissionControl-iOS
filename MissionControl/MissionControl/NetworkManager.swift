@@ -13,7 +13,7 @@ import UIKit
 
 class NetworkManager {
     //lets
-    let queue = NSOperationQueue()
+    let queue = OperationQueue()
     
     let connectTimeout = 2
     let segmentSize = 2048
@@ -31,13 +31,13 @@ class NetworkManager {
     var view:DisconnectableProtocol? = nil
     
     //Sets the ip and port of the server it will connect to
-    func setServer(addr:String, port:Int){
+    func setServer(_ addr:String, port:Int){
         sock = TCPClient(addr: addr, port: port)
     }
     
     //Connects to server and handles handshake
-    func connect(caller:ConnectViewController){
-        queue.addOperationWithBlock() {
+    func connect(_ caller:ConnectViewController){
+        queue.addOperation() {
             let (_, errorMsg) = self.sock!.connect(timeout: self.connectTimeout)
             if(errorMsg == "connect success"){
                 //Send connREQ Message
@@ -51,11 +51,11 @@ class NetworkManager {
                 while (!parseable){
                     usleep(10000)
                     print("connLAO")
-                    self.connLAO = (self.connLAO as String) + (self.receiveString() as String)
+                    self.connLAO = (self.connLAO as String).appending( (self.receiveString() as String)) as NSString
                     print(self.connLAO)
                     do {
                         //try to serialize json, will succeed if valid json
-                        try NSJSONSerialization.JSONObjectWithData(self.connLAO.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: []) as! [String: AnyObject]
+                        try JSONSerialization.jsonObject(with: self.connLAO.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)!, options: []) as! [String: AnyObject]
                         parseable = true
                     } catch _ {
                         print("inparseable")
@@ -64,18 +64,18 @@ class NetworkManager {
                 
                 //Send ConnSTT
                 self.sendString(self.connSTT)
-                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                OperationQueue.main.addOperation() {
                     caller.performConnectedAction(true)
                 }
             }
-            NSOperationQueue.mainQueue().addOperationWithBlock() {
+            OperationQueue.main.addOperation() {
                 caller.performConnectedAction(false)
             }
         }
     }
     
     //wrapper for the socket send function
-    func sendString(msg:String){
+    func sendString(_ msg:String){
         sock!.send(str: msg)
     }
     
@@ -83,31 +83,34 @@ class NetworkManager {
     func receiveString()->NSString{
         var data:[UInt8]?
         if(!aborted){
-            data = sock!.read(segmentSize)
-            if(data == nil){
-                sock!.close()
-                view!.shouldCloseCauseServerCrash()
-                return ""
-            } else {
-                return NSString(bytes: data!, length: data!.count, encoding: NSUTF8StringEncoding)!
+                data = sock!.read(segmentSize)
+            
+                if let val = data{
+                return NSString(bytes: data!, length: data!.count, encoding: String.Encoding.utf8.rawValue)!
+                }
+                else{
+                    sock!.close()
+                    view!.shouldCloseCauseServerCrash()
+                    return ""
+                }
             }
-        }
+        
         return ""
     }
     
     //Asynchronous sends an message to the server
-    func sendAsync(msg:String){
-        queue.addOperationWithBlock() {
+    func sendAsync(_ msg:String){
+        queue.addOperation() {
             self.sendString(msg)
         }
     }
     
     //kicks off an async updating loop
     func updateAsync(){
-        queue.addOperationWithBlock() {
+        queue.addOperation() {
             while(!self.aborted){
                 self.latest = self.receiveString()
-                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                OperationQueue.main.addOperation() {
                     //add operation to main queue
                 }
             }

@@ -13,13 +13,13 @@ class DigitalS: Sensor {
     var Graph:NSNumber
     var DataType:String
     required init(_ json:JSONDecoder) {
-        if let value = json["Graph"].number {
-            Graph = value
+        if let value:NSNumber? = json["Graph"].getOptional() {
+            Graph = value!
         } else {
             Graph = 40
         }
-        if let value = json["DataType"].string {
-            DataType = value
+        if let value:String? = json["DataType"].getOptional() {
+            DataType = value!
         } else {
             DataType = ""
         }

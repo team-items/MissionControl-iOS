@@ -36,15 +36,15 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         hostIpField.delegate = self
         
         //Move this to storyboard if possible
-        hostIpField.autocorrectionType = UITextAutocorrectionType.No
+        hostIpField.autocorrectionType = UITextAutocorrectionType.no
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
-        navigationController!.navigationBar.barStyle = UIBarStyle.Black
+        navigationController!.navigationBar.barStyle = UIBarStyle.black
         
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.white
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
-        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do{
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
@@ -62,7 +62,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession?.addOutput(captureMetadataOutput)
             
             // Set delegate and use the default dispatch queue to execute the call back
-            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = supportedBarCodes
             
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
@@ -81,7 +81,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
        
         
         // Move the message label to the top view
-        view.bringSubviewToFront(messageLabel)
+        view.bringSubview(toFront: messageLabel)
 
     }
     
@@ -90,7 +90,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Dispose of any resources that can be recreated.
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             
@@ -115,57 +115,57 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     //action called when connecting via QR Code
-    func qrConnect(decodedURL: String) {
-        let alertPrompt = UIAlertController(title: "Connect to Robot", message: "You're going to connect to \(decodedURL)", preferredStyle: .ActionSheet)
+    func qrConnect(_ decodedURL: String) {
+        let alertPrompt = UIAlertController(title: "Connect to Robot", message: "You're going to connect to \(decodedURL)", preferredStyle: .actionSheet)
         
         alertPrompt.addAction(
-            UIAlertAction(title: "Confirm", style: UIAlertActionStyle.Default, handler: {
+            UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: {
                 (action) -> Void in self.connect(decodedURL)
             })
         )
         alertPrompt.addAction(
-            UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         )
         
-        self.presentViewController(alertPrompt, animated: true, completion: nil)
+        self.present(alertPrompt, animated: true, completion: nil)
     }
     
     func showConnectingError(){
-        let alertPrompt = UIAlertController(title: "Connecting error", message: "Could not connect to server", preferredStyle: .ActionSheet)
+        let alertPrompt = UIAlertController(title: "Connecting error", message: "Could not connect to server", preferredStyle: .actionSheet)
         
         alertPrompt.addAction(
-            UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+            UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil)
         )
         
-        self.presentViewController(alertPrompt, animated: true, completion: nil)
+        self.present(alertPrompt, animated: true, completion: nil)
     }
     
     //setting up connection and calling the asynchronous
-    func connect(url: String){
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.labelText = "Connecting"
+    func connect(_ url: String){
+        let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingNotification?.mode = MBProgressHUDMode.indeterminate
+        loadingNotification?.labelText = "Connecting"
         manager = NetworkManager()
         manager.setServer(url, port: 62626)
         manager.connect(self)
     }
     
     //called after connecting
-    func performConnectedAction(connected:Bool){
+    func performConnectedAction(_ connected:Bool){
         isConnecting = false
         if(connected){
             manager.updateAsync()
-            performSegueWithIdentifier("connect", sender: self)
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            performSegue(withIdentifier: "connect", sender: self)
+            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
         } else {
             showConnectingError()
         }
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "connect" {
-            let senContr = segue.destinationViewController as! TabViewController
+            let senContr = segue.destination as! TabViewController
             let controller = senContr.viewControllers![0] as! UINavigationController
             let destination = controller.visibleViewController as! SensorTableViewController
             manager.view = destination
@@ -174,7 +174,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             print(manager.connLAO)
             
-            let dataFromString = manager.connLAO.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            let dataFromString = manager.connLAO.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)
             var connLAO = JSON(data : dataFromString!)
             
         
@@ -224,7 +224,7 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
     }
     
-    @IBAction func connectClicked(sender: UIBarButtonItem) {
+    @IBAction func connectClicked(_ sender: UIBarButtonItem) {
         if(!isConnecting){
             isConnecting = true
             connect(hostIpField.text!)
@@ -233,18 +233,18 @@ class ConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     // MARK: UITextFieldDelegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
         if let _ = hostIpField.text {
             if hostIpField.text!.characters.count > 0 {
-            connect.enabled = true
+            connect.isEnabled = true
             }
         }
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
     }
     

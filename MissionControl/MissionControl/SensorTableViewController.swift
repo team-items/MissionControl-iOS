@@ -18,7 +18,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     }
     var sensors: [Sensor] = []
     var manager:NetworkManager?
-    var timer = NSTimer();
+    var timer = Timer();
     var enabledMotorServos: [MotorServo] = []
     var motors: [MotorServo] = []
     
@@ -32,15 +32,15 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         self.tabBarController!.delegate = self
         
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem!.tintColor = UIColor.white
         navigationController!.navigationBar.barTintColor = UIColor(netHex:0xf43254)
         tabBarController!.tabBar.tintColor = UIColor(netHex: 0xf43254)
-        UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.whiteColor() ]
+        UINavigationBar.appearance().titleTextAttributes = [ "TextColor": UIColor.white ]
         
-        navigationController!.navigationBar.barStyle = UIBarStyle.Black
+        navigationController!.navigationBar.barStyle = UIBarStyle.black
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(refreshRate, target: self, selector: "updateSensors", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        timer = Timer.scheduledTimer(timeInterval: refreshRate, target: self, selector: #selector(SensorTableViewController.updateSensors), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,7 +48,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         manager!.view = self
     }
     
@@ -59,26 +59,26 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return enabledSensors.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell();
         if let asensor = enabledSensors[indexPath.row] as? AnalogS {
-         let cell1 = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
+         let cell1 = tableView.dequeueReusableCell(withIdentifier: "sensorcell", for: indexPath) as! SensorTableViewCell
         
         cell1.configWithSensor(asensor)
             cell = cell1
         }else if let dsensor = enabledSensors[indexPath.row] as? DigitalS {
-            let cell2 = tableView.dequeueReusableCellWithIdentifier("dsensorcell", forIndexPath: indexPath) as! DigitalSensorTableViewCell
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "dsensorcell", for: indexPath) as! DigitalSensorTableViewCell
             
             cell2.configWithSensor(dsensor)
             cell = cell2
@@ -92,8 +92,8 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.dequeueReusableCellWithIdentifier("sensorcell", forIndexPath: indexPath) as! SensorTableViewCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sensorcell", for: indexPath) as! SensorTableViewCell
         
         if !sensorsexpanded[indexPath.row]{
             cell.graph.alpha = 1
@@ -102,10 +102,10 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
            cell.graph.alpha = 0
         }
         
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
         print(cell.ispaused)
         if cell.ispaused{
-        cell.pauseButton.setTitle("Resume", forState: UIControlState.Normal)
+        cell.pauseButton.setTitle("Resume", for: UIControlState())
         }
         sensorsexpanded[indexPath.row] = !sensorsexpanded[indexPath.row]
         
@@ -115,10 +115,10 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     }
     
     func updateSensors(){
-        let dataFromString = manager!.latest.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let dataFromString = manager!.latest.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)
         var dat = JSON(data : dataFromString!)
         for (sensorname, value) in dat["Data"].dictionaryValue{
-            for (var ind = 0; ind < enabledSensors.count; ind++){
+            for ind in 0 ..< enabledSensors.count{
                 if sensorname == enabledSensors[ind].Name{
                     if ind < cells.count{
                         if let asensor = enabledSensors[ind] as? AnalogS {
@@ -145,7 +145,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         print("updated")
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if sensorsexpanded.count <= indexPath.row{
             sensorsexpanded.append(false)
         }
@@ -159,15 +159,15 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     
     
     
-    @IBAction func disconnect(sender: UIBarButtonItem) {
+    @IBAction func disconnect(_ sender: UIBarButtonItem) {
         timer.invalidate()
         manager!.disconnect()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "edit" {
-            let destination = segue.destinationViewController as! UINavigationController
+            let destination = segue.destination as! UINavigationController
             let controller = destination.visibleViewController as! EditTableViewController
             controller.sensors = self.sensors
             controller.enabledSensors = self.enabledSensors
@@ -176,7 +176,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
         
     }
    
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
       
         let dest = viewController as! UINavigationController
         if let destination = dest.viewControllers[0] as? MotorTableViewController{
@@ -189,7 +189,7 @@ class SensorTableViewController: UITableViewController, UITabBarControllerDelega
     
     func shouldCloseCauseServerCrash(){
         timer.invalidate()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     /*

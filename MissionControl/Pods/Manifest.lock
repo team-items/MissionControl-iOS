@@ -1,33 +1,26 @@
 PODS:
   - BEMSimpleLineGraph (4.1)
-  - Charts (2.1.6)
-  - JSONJoy-Swift (1.0.0)
+  - Charts (3.0.1):
+    - Charts/Core (= 3.0.1)
+  - Charts/Core (3.0.1)
+  - JSONJoy-Swift (3.0.1)
   - MBProgressHUD (0.9.2)
-  - SwiftyJSON (2.3.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - BEMSimpleLineGraph
-  - Charts (from `https://github.com/team-items/ios-charts.git`)
-  - JSONJoy-Swift (~> 1.0.0)
+  - Charts
+  - JSONJoy-Swift (~> 3.0.0)
   - MBProgressHUD (~> 0.9.2)
   - SwiftyJSON
 
-EXTERNAL SOURCES:
-  Charts:
-    :git: https://github.com/team-items/ios-charts.git
-
-CHECKOUT OPTIONS:
-  Charts:
-    :commit: 0c832812fb66f859adce75c6a8192b11fb3698dd
-    :git: https://github.com/team-items/ios-charts.git
-
 SPEC CHECKSUMS:
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
-  Charts: 5e1e5ac23898e5b09d226a2fc3e9d86bc281937e
-  JSONJoy-Swift: 3e8129c282470614da69759208e9c923732f6cb4
+  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
+  JSONJoy-Swift: ef6eccdcf319412f149bbdd031b27f0430d5d576
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: bad524acd358063704354e28e086ae34edc3629d
+PODFILE CHECKSUM: 8e7174c06735d15329c5cc8d91f6cb1d48326729
 
-COCOAPODS: 1.0.0.beta.2
+COCOAPODS: 1.1.1
